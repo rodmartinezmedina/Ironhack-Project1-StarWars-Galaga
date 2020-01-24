@@ -23,9 +23,9 @@ MVP
 1-
 index.html //=> will have the 3 required instances created in the DOM through JS: 
 ```
-	-Start screen
-	-Game screen(canvas)
-	-Restart screen
+-Start screen
+-Game screen(canvas)
+-Restart screen
 ```
 
 2-
@@ -50,14 +50,14 @@ main.JS
 4-MVP
 game.JS
 ```
-	-Constructor Game
-	-Game.Prototypes:
-		-Start()
-			-Canvas, ctx, Liveselement, Scoreelement, container-size
-			create player, set handleKeyDown;
-			-bind handleKeyDown
-	-startLoop()
-	-checkLives()
+-Constructor Game
+-Game.Prototypes:
+	-Start()
+		-Canvas, ctx, Liveselement, Scoreelement, container-size
+		create player, set handleKeyDown;
+		-bind handleKeyDown
+-startLoop()
+-checkLives()
 ```
 
 5-MVP
@@ -75,19 +75,19 @@ player.JS
 6-MVP
 enemies.JS
 ```
-	Constructor:
-		vars: size, position, speed.
-	Protos:
-		-draw()
-		-updatePosition()
-		-insideScreen() clears enemy when passing Max y-axis
+Constructor:
+	vars: size, position, speed.
+Protos:
+	-draw()
+	-updatePosition()
+	-insideScreen() clears enemy when passing Max y-axis
 ```
 
 7-MVP
 bullets.js
 ```
-	Constructor: 
-		-bullets
+Constructor: 
+	-bullets
 ```
 
 
@@ -95,11 +95,11 @@ bullets.js
 //BACKLOG
 
 ```
-	-chooseRandomEnemy()
-	-randomPlayerShip()
-	-extraLifeFunc () {
-		if (points > 500) {extraLife}
-	}
+-chooseRandomEnemy()
+-randomPlayerShip()
+-extraLifeFunc () {
+	if (points > 500) {extraLife}
+}
 ```
 
 

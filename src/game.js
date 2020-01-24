@@ -35,8 +35,7 @@ Game.prototype.start = function() {
 	// ..
 
 	// Start the canvas requestAnimationFrame loop
-	this.start
-
+	this.startLoop();
 };
 
 Game.prototype.startLoop = function() {};
@@ -50,9 +49,6 @@ Game.prototype.passGameStats = function() {};
 Game.prototype.gameOver = function() {};
 
 Game.prototype.removeGameScreen = function() {};
-
-
-
 
 
 

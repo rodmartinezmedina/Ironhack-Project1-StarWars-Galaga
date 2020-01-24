@@ -11,7 +11,9 @@ function Player(canvas, lives) {
 	this.speed = 5;
 }
 
-Player.prototype.setDirection = function(direction) {};
+Player.prototype.setDirection = function(direction) {
+	
+};
 
 Player.prototype.didCollide = function(enemy) {};
 

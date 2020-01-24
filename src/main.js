@@ -98,7 +98,7 @@ function main() {
 		game.gameScreen = createGameScreen();
 
 		// Starts the game
-		// game.start()
+		game.start()
 	};
 
   function gameOver() {};
