@@ -34,18 +34,18 @@ style.css
 3-
 main.JS
 	Functions:
-	```
-	-buildDom();
-	-main();
-		-createSplasScreen();
-		-removeSplashScreen();
-		-createGameScreen();
-		-removeGameScreen();
-		-createGameOverScreen();
-		-removeGameOverScreen();
-		-startGame();
-		-gameOver();
-	```
+```
+-buildDom(); 
+-main(); 
+-createSplasScreen(); 
+-removeSplashScreen(); 
+-createGameScreen(); 
+-removeGameScreen(); 
+-createGameOverScreen(); 
+-removeGameOverScreen(); 
+-startGame(); 
+-gameOver();
+```
 
 4-MVP
 game.JS
