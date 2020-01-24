@@ -1,0 +1,34 @@
+PROJECT 1
+Game Name: 'USE THE FORCE'
+Similar games:Galaga /Galaxian / Space invaders,etc
+Type of game: vertical shooting game.
+
+
+Player location & movement: highest y-axis value(lower part of screen). 
+Player can only move horizontally.
+
+Player attack: player can shoot upwards to kill enemies. 
+Bullet/ray direction: Bullet/ray that kills enemies follows the same y-axis value
+where the player was located at the time of shooting. 
+
+Player lives: The Player will have 3 lives. The player will loose a life when 
+colliding with one of the enemies when they attack.
+If canvas is covered with enemies
+
+
+Enemies at start: Game will start with 30 enemies located in random positions 
+(with the limits marked below):
+                    y-axis: first 5 lines
+                    x-axis: can take any position in x-axis.
+
+Enemies appearance: Enemies will appear every 5 seconds from the top of the screen and will take a 
+random position in the allowed spaces. If random position chosen by computer is occupied, then the
+enemy will proceed to directly attack the player.
+                    
+Enemies attack: every 6 seconds, a random enemy will move following its y-axis attacking the player.
+
+Points: Every time a bullet collides with any enemy, player will be given 1 point.
+
+
+
+
