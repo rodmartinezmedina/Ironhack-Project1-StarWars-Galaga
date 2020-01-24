@@ -21,11 +21,12 @@ FICHIERS & FUNCTIONS
 MVP
 
 1-
-index.html //=> will have the 3 required instances created 
-	in the DOM through JS: 
+index.html //=> will have the 3 required instances created in the DOM through JS: 
+```
 	-Start screen
 	-Game screen(canvas)
 	-Restart screen
+```
 
 2-
 style.css
@@ -34,16 +35,16 @@ style.css
 main.JS
 	Functions:
 	```
-		-buildDom();
-		-main();
-			-createSplasScreen();
-			-removeSplashScreen();
-			-createGameScreen();
-			-removeGameScreen();
-			-createGameOverScreen();
-			-removeGameOverScreen();
-			-startGame();
-			-gameOver();
+	-buildDom();
+	-main();
+		-createSplasScreen();
+		-removeSplashScreen();
+		-createGameScreen();
+		-removeGameScreen();
+		-createGameOverScreen();
+		-removeGameOverScreen();
+		-startGame();
+		-gameOver();
 	```
 
 4-MVP
@@ -61,13 +62,15 @@ game.JS
 
 5-MVP
 player.JS
-		Constructor:
-			-vars: lives,size,position,direction,speed.
-		Protos:
-			-checkCollide()
-			-updatePosition()
-			-removeLife()
-			-drawPlayer()
+```
+	Constructor:
+		-vars: lives,size,position,direction,speed.
+	Protos:
+		-checkCollide()
+		-updatePosition()
+		-removeLife()
+		-drawPlayer()
+```
 
 6-MVP
 enemies.JS
