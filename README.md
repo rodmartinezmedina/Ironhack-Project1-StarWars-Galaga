@@ -3,7 +3,6 @@ Ironhack-Project1-StarWars-Galaga
 
 'USE THE FORCE'
 
-
 //
 //Description
 'Use the force' is a Galaga-like game but using star wars fighters images. 
@@ -34,6 +33,7 @@ style.css
 3-
 main.JS
 	Functions:
+	```
 		-buildDom();
 		-main();
 			-createSplasScreen();
@@ -44,9 +44,11 @@ main.JS
 			-removeGameOverScreen();
 			-startGame();
 			-gameOver();
+	```
 
 4-MVP
 game.JS
+```
 	-Constructor Game
 	-Game.Prototypes:
 		-Start()
@@ -55,9 +57,10 @@ game.JS
 			-bind handleKeyDown
 	-startLoop()
 	-checkLives()
+```
 
 5-MVP
-	player.JS
+player.JS
 		Constructor:
 			-vars: lives,size,position,direction,speed.
 		Protos:
@@ -67,24 +70,34 @@ game.JS
 			-drawPlayer()
 
 6-MVP
-enemy.JS
+enemies.JS
+```
 	Constructor:
 		vars: size, position, speed.
 	Protos:
 		-draw()
 		-updatePosition()
-		-insideScreen() clear when passing Max y-axis
+		-insideScreen() clears enemy when passing Max y-axis
+```
+
+7-MVP
+bullets.js
+```
+	Constructor: 
+		-bullets
+```
 
 
 //
 //BACKLOG
 
+```
 	-chooseRandomEnemy()
 	-randomPlayerShip()
-	-extraLifeFunc() {
+	-extraLifeFunc () {
 		if (points > 500) {extraLife}
 	}
-	-
+```
 
 
 Links
