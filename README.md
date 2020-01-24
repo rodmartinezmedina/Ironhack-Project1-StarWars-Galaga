@@ -79,6 +79,13 @@ enemy.JS
 //
 //BACKLOG
 
+	-chooseRandomEnemy()
+	-randomPlayerShip()
+	-extraLifeFunc() {
+		if (points > 500) {extraLife}
+	}
+	-
+
 
 Links
 Trello
