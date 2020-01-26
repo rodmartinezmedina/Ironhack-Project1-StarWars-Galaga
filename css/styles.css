@@ -1,6 +1,6 @@
 /* ---- reset ---- */
 
-html {
+  html {
     box-sizing: border-box;
   }
   *, *:before, *:after {
@@ -33,51 +33,52 @@ html {
     height: 100%;
   }
   
-  .container {
+  .game-container {
     margin: 0 20px;
-    border: 5px green;
+    border: 55px green;
   }
   
   @media (min-width: 768px) {
     .container {
       max-width: 728px;
       margin: 0 auto;
-      border: 5px red;
+      
     }
   }
   
   
   /* ---- components ---- */
   
-  .game {
+  .game-container {
     text-align: center;
     display: flex;
     flex-direction: column;
     height: 100%;
   }
   
-  .game header {
+  .game-container header {
     height: 50px;
     display: flex;
     align-items: center;
   }
   
-  .game .lives {
+  .game-container .lives {
     flex: 1;
   }
   
-  .game .score {
+  .game-container .score {
     flex: 1;
   }
   
-  .game .label {
+  .game-container .label {
     font-weight: bold;
   }
   
-  .game .value {
+  .game-container .value {
     font-style: italic;
   }
   
-  .game .canvas-container {
+  .game-container .canvas-container {
     flex: 1;
+    border: 40px blue;
   }

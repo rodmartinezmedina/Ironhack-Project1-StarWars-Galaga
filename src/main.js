@@ -47,7 +47,7 @@ function main() {
 
   function createGameScreen() {
 		var gameScreen = buildDom(`
-			<main class="game container">
+			<main class="game-container">
 				<header>
 					<div class="lives">
 						<span class="label">Lives:</span>
@@ -76,9 +76,29 @@ function main() {
     
   // -- game over screen
 
-  function createGameOverScreen(score) {};
+  function createGameOverScreen(score) {
+	  gameOverScreen = buildDom(`
+			<main>
+				<h1>Game Over</h1>
+				<p>Your score: <span></span></p>
+				<button>Restart</button>
+			</main>			  
+		`)
+		
+		var button = gameOverScreen.querySelector('button');
+		button.addEventListener('click', startGame);
 
-  function removeGameOverScreen() {};
+		var span = gameOverScreen.querySelector('span');
+		span.innerText = score;
+
+		document.body.appendChild(gameOverScreen);
+  };
+
+  function removeGameOverScreen() {
+		if (gameOverScreen !== undefined) {
+			gameOverScreen.remove();
+		}
+	};
 
 
 	// -- you win screen
@@ -92,16 +112,21 @@ function main() {
 
   function startGame() {
 		removeSplashScreen();
-		//later we need to add clearing of the gameOverScreen
+		removeGameOverScreen();
 
 		game = new Game();
 		game.gameScreen = createGameScreen();
-
-		// Starts the game
+		// var gameScreen = createGameScreen();
 		game.start()
-	};
+		game.passGameOverCallback( function() {
+			gameOver(game.score);
+		});
+  };
 
-  function gameOver() {};
+  function gameOver(score) {
+	  removeGameScreen();
+	  createGameOverScreen(score);
+  };
 
   function youWin() {};
 

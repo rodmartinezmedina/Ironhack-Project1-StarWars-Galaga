@@ -28,13 +28,10 @@ Game.prototype.start = function() {
 
 
 	// Create a new player for the current game
-	// this.player = new{};
 	this.player = new Player (this.canvas, 3);
 
 
-	// Add event listener for moving the player
-	// Event listener callback function
-
+	// Add event listener for moving the player.Event listener callback function
 	this.handleKeyDown = function(event) {
 		if (event.key === 'ArrowRight') {
 			console.log('RIGHT');
@@ -50,6 +47,23 @@ Game.prototype.start = function() {
 		}
 	};
 
+	// NO REBOUNDS ON SIDES
+	// this.handleKeyDown = function(event) {
+	// 	if (event.key === 'ArrowRight') {
+	// 		console.log('RIGHT');
+	// 		this.player.move('right');
+	// 	}
+	// 	else if (event.key === 'ArrowLeft') {
+	// 		console.log('LEFT');
+	// 		this.player.move('left');
+	// 	}
+	// 	else if (event.key === 'ArrowDown') {
+	// 		console.log('STOP');
+	// 		this.player.move('stop');
+	// 	}
+	// };
+
+
 	document.body.addEventListener (
 		'keydown',
 		this.handleKeyDown.bind(this));
@@ -64,11 +78,8 @@ Game.prototype.startLoop = function() {
 		var loop = function() {
 		console.log('in loop');
 
-		// EVERYTHING HAPPENS HERE!
-		// 1. UPDATE THE STATE OF PLAYER AND ENEMIES
-  
+		
     // 0. Our player was already created - via `game.start()`
-
 		// 1. Create new enemies randomly
 		if (Math.random() > 0.98) {
 			var randomX = this.canvas.width * Math.random();
@@ -114,11 +125,13 @@ Game.prototype.startLoop = function() {
 			enemy.draw();
 		});
 
-// 4. TERMINATE LOOP IF GAME IS OVER
-
+ // 4. TERMINATE LOOP IF GAME IS OVER
 		if (!this.gameIsOver) {
 			window.requestAnimationFrame(loop);
 		}
+
+		this.updateGamesStats();
+		
 	}.bind(this);
 
 	  // As loop function will be continuously invoked by
@@ -130,15 +143,50 @@ Game.prototype.startLoop = function() {
 	window.requestAnimationFrame(loop);
 };
 
-Game.prototype.checkCollisions = function() {};
+Game.prototype.checkCollisions = function() {
+	
+	this.enemies.forEach (function (enemy) {
 
-Game.prototype.updateGamesStats = function() {};
+		if (this.player.didCollide(enemy) ) {
+		
+			this.player.removeLife();
+			console.log('lives', this.player.lives);
+
+			//Move the enemy offscreen
+			enemy.x = 0 - enemy.size;
+
+			if (this.player.lives === 0) {
+				this.gameOver();
+			}
+		}
+	}, this)
+	  // We have to pass `this` value as the second argument
+  // as array method callbacks have a default `this` of undefined.
+};
+
+Game.prototype.updateGamesStats = function() {
+	this.score += 1;
+	this.livesElement.innerHTML = this.player.lives;
+	this.scoreElement.innerHTML = this.score;
+};
 
 Game.prototype.passGameStats = function() {};
 
-Game.prototype.gameOver = function() {};
+Game.prototype.gameOver = function() {
+	this.gameIsOver = true;
 
-Game.prototype.removeGameScreen = function() {};
+	// console.log('GAME OVER');
+	this.onGameOverCallback();
+};
+
+Game.prototype.removeGameScreen = function() {
+	this.gameScreen.remove();
+	// remove() is the DOM method which removes the DOM Node 
+};
+
+Game.prototype.passGameOverCallback = function(gameOver) {
+	this.onGameOverCallback = gameOver;
+};
 
 
 
