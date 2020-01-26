@@ -7,7 +7,6 @@ function Game() {
 	this.player = null;
 	this.gameIsOver = false;
 	this.gameScreen = null;
-
 }
 
 Game.prototype.start = function() {
@@ -29,16 +28,48 @@ Game.prototype.start = function() {
 
 
 	// Create a new player for the current game
-	this.player = {};
+	// this.player = new{};
+	this.player = new Player (this.canvas, 3);
+
+
 
 	// Add event listener for moving the player
-	// ..
+	// Event listener callback function
+
+	this.handleKeyDown = function(event) {
+		if (event.key === 'ArrowRight') {
+			console.log('RIGHT');
+			this.player.setDirection('right');
+		}
+		else if (event.key === 'arrowLeft') {
+			console.log('LEFT');
+			this.player.setDirection('left');
+		}
+	};
+
+	document.body.addEventListener (
+		'keydown',
+		this.handleKeyDown.bind(this));
+
 
 	// Start the canvas requestAnimationFrame loop
 	this.startLoop();
 };
 
-Game.prototype.startLoop = function() {};
+
+Game.prototype.startLoop = function() {
+		var loop = function() {
+		console.log('in loop');
+
+		// EVERYTHING HAPPENS HERE!
+
+		if (!this.gameIsOver) {
+			window.requestAnimationFrame(loop);
+		}
+	}.bind(this);
+
+	window.requestAnimationFrame(loop);
+};
 
 Game.prototype.checkCollisions = function() {};
 

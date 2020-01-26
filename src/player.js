@@ -12,13 +12,45 @@ function Player(canvas, lives) {
 }
 
 Player.prototype.setDirection = function(direction) {
-	
+
+	// +1 down -1 up
+	if (direction ==='right') this.direction = 1;
+	else if(direction === 'left') this.direction = -1;
 };
+
 
 Player.prototype.didCollide = function(enemy) {};
 
-Player.prototype.handleScreenCollision = function() {};
 
-Player.prototype.removeLife = function() {};
+Player.prototype.handleScreenCollision = function() {
+	//
+	//
+	//check step 14 for precise instructions
+	//
+	this.x = this.x + this.direction * this.speed;
+	var screenLeft = 0;
+	var screenRight = this.canvas.width;
+	
+	if (this.x > screenLeft) this.direction = 1;
+	else if (this.x < screenRight) this.direction = -1;
+};
 
 
+Player.prototype.removeLife = function() {
+	this.lives -= 1;
+};
+
+
+Player.prototype.draw = function () {
+	
+// check how to insert image in file 
+// step 14 of tutorial;
+	this.ctx.fillStyle = '#66D3FA';
+	// fillRect(x, y, width, height)
+	this.ctx.fillRect(
+		this.x,
+		this.y,
+		this.size,
+		this.size,
+	);
+};
