@@ -32,7 +32,6 @@ Game.prototype.start = function() {
 	this.player = new Player (this.canvas, 3);
 
 
-
 	// Add event listener for moving the player
 	// Event listener callback function
 
@@ -41,9 +40,13 @@ Game.prototype.start = function() {
 			console.log('RIGHT');
 			this.player.setDirection('right');
 		}
-		else if (event.key === 'arrowLeft') {
+		else if (event.key === 'ArrowLeft') {
 			console.log('LEFT');
 			this.player.setDirection('left');
+		}
+		else if (event.key === 'ArrowDown') {
+			console.log('STOP');
+			this.player.setDirection('stop');
 		}
 	};
 

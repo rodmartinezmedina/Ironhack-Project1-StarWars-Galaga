@@ -4,8 +4,8 @@ function Enemy (canvas, y , speed) {
 	this.canvas = canvas;
 	this.ctx =canvas.getContext('2d');
 	this.size = 20;
-	this.x = canvas.width / 2;
-	this.y =200;
+	this.x = y;
+	this.y =0;
 	this.speed = speed;
 
 }
@@ -22,7 +22,7 @@ Enemy.prototype.draw = function () {
 
 
 Enemy.prototype.updatePosition = function () {
-	this.y = this.y - this.speed;
+	this.y = this.y + this.speed;
 };
 
 

@@ -6,7 +6,7 @@ function Player(canvas, lives) {
 	this.lives = lives;
 	this.size = 50;
 	this.x = canvas.width / 2;
-	this.y = canvas.height / 2;
+	this.y = canvas.height - 50;
 	this.direction = 0;
 	this.speed = 5;
 }
@@ -15,7 +15,8 @@ Player.prototype.setDirection = function(direction) {
 
 	// +1 down -1 up
 	if (direction ==='right') this.direction = 1;
-	else if(direction === 'left') this.direction = -1;
+	else if (direction === 'left') this.direction = -1;
+	else if (direction ==='stop') this.direction = 0;
 };
 
 
@@ -31,10 +32,10 @@ Player.prototype.handleScreenCollision = function() {
 	//Should I write here this.x or this.y????
 	this.x = this.x + this.direction * this.speed;
 	var screenLeft = 0;
-	var screenRight = this.canvas.width;
+	var screenRight = this.canvas.width - 50;
 	
-	if (this.x > screenLeft) this.direction = 1;
-	else if (this.x < screenRight) this.direction = -1;
+	if (this.x < screenLeft) this.direction = 0;
+	else if (this.x > screenRight) this.direction = 0;
 };
 
 
