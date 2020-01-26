@@ -4,14 +4,14 @@ function Enemy (canvas, y , speed) {
 	this.canvas = canvas;
 	this.ctx =canvas.getContext('2d');
 	this.size = 20;
-	this.x = canvas.width + this.size;
-	this.y = y;
+	this.x = canvas.width / 2;
+	this.y =200;
 	this.speed = speed;
 
 }
 
 Enemy.prototype.draw = function () {
-	this.ctx.fillstyle = 'FF3F26';
+	this.ctx.fillstyle = 'blue';
 	this.ctx.fillRect(
 		this.x,
 		this.y,
@@ -32,5 +32,5 @@ Enemy.prototype.isInsideScreen = function () {
 	// whats going on here?????
 	//HELP!
 	//
-	return this.y + this.size / 2> 0;
+	return this.y + this.size / 2 > 0;
 };

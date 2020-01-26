@@ -6,7 +6,7 @@ function Player(canvas, lives) {
 	this.lives = lives;
 	this.size = 50;
 	this.x = canvas.width / 2;
-	this.y = 750;
+	this.y = canvas.height / 2;
 	this.direction = 0;
 	this.speed = 5;
 }
@@ -27,6 +27,8 @@ Player.prototype.handleScreenCollision = function() {
 	//
 	//check step 14 for precise instructions
 	//
+	//HELP 
+	//Should I write here this.x or this.y????
 	this.x = this.x + this.direction * this.speed;
 	var screenLeft = 0;
 	var screenRight = this.canvas.width;
@@ -45,7 +47,7 @@ Player.prototype.draw = function () {
 	
 // check how to insert image in file 
 // step 14 of tutorial;
-	this.ctx.fillStyle = '#66D3FA';
+	this.ctx.fillStyle = 'red';
 	// fillRect(x, y, width, height)
 	this.ctx.fillRect(
 		this.x,

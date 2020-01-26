@@ -62,11 +62,67 @@ Game.prototype.startLoop = function() {
 		console.log('in loop');
 
 		// EVERYTHING HAPPENS HERE!
+		// 1. UPDATE THE STATE OF PLAYER AND ENEMIES
+  
+    // 0. Our player was already created - via `game.start()`
+
+		// 1. Create new enemies randomly
+		if (Math.random() > 0.98) {
+			var randomX = this.canvas.width * Math.random();
+			var newEnemy = new Enemy(this.canvas, randomX, 5);
+			this.enemies.push(newEnemy);
+		}
+			// HELP
+			//how to generate enemies based on regular interval time
+			//how to randomly locate the enemies in the delimited waiting
+			// zone in the top of the screen
+
+	
+		// 2. Check if player had hit any enemy (check all enemies)
+		this.checkCollisions();
+
+    // 3. Check if player is going off the screen
+		this.player.handleScreenCollision();
+
+    // 4. Move existing enemies
+
+		// 5. Check if any enemy is going of the screen
+		this.enemies = this.enemies.filter(function(enemy) {
+			enemy.updatePosition();
+			return enemy.isInsideScreen();
+		})
+
+		//
+		// 6. Check if bullets hit enemies
+		//HELP how to do this? First check pablo's zombie game code!!!
+		//
+
+
+// 2. CLEAR THE CANVAS
+		this.ctx.clearRect(0 ,0, this.canvas.width, this.canvas.height);
+
+
+// 3. UPDATE THE CANVAS
+		// Draw the player
+		this.player.draw();
+		
+		// Draw the enemies
+		this.enemies.forEach(function(enemy) {
+			enemy.draw();
+		});
+
+// 4. TERMINATE LOOP IF GAME IS OVER
 
 		if (!this.gameIsOver) {
 			window.requestAnimationFrame(loop);
 		}
 	}.bind(this);
+
+	  // As loop function will be continuously invoked by
+  // the `window` object- `window.requestAnimationFrame(loop)`
+  // we have to bind the function so that value of `this` is
+  // pointing to the `game` object, like this:
+  // var loop = (function(){}).bind(this);
 
 	window.requestAnimationFrame(loop);
 };
