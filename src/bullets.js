@@ -1,9 +1,9 @@
 function Bullet(canvas, playerX){
     this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
     this.size = 20;
     this.x = playerX;
-    this.y = canvas.height - 70;
-    this.ctx = canvas.getContext("2d");
+    this.y = canvas.height - 70;    
     this.speed = 4;
     this.direction = 1;    
     // this.image = new Image();
@@ -27,4 +27,28 @@ Bullet.prototype.update = function() {
 
 Bullet.prototype.isInsideScreen = function (){
     return this.y >= 0;
+};
+Bullet.prototype.didCollide = function(enemy) {
+	var bulletLeft = this.x;
+	var bulletRight = this.x + this.size;
+	var bulletTop = this.y;
+	var bulletBottom = this.y + this.size;
+
+	
+	var enemyLeft = enemy.x;
+	var enemyRight = enemy.x + enemy.size;
+	var enemyTop = enemy.y;
+	var enemyBottom = enemy.y + enemy.size;
+
+// Check if the enemy intersects any of the player's sides
+var crossRight = enemyLeft <= bulletRight && enemyRight >= bulletLeft;
+var crossLeft = enemyRight >= bulletLeft && enemyLeft <= bulletRight;
+var crossTop = enemyBottom >= bulletTop && enemyTop <= bulletBottom;
+var crossBottom = enemyBottom <= bulletBottom && enemyBottom >= bulletTop;
+
+if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+	return true;
+}
+
+return false;
 };

@@ -8,18 +8,23 @@ function Game() {
 	this.player = null;
 	this.gameIsOver = false;
 	this.gameScreen = null;
+	this.score = 0;
+	
 }
 
 Game.prototype.start = function() {
 
 	// Save reference to canvas and container. Create ctx
 	this.canvasContainer = document.querySelector('.canvas-container');
+	this.gameContainer = document.querySelector('.game-container');
+
 	this.canvas = this.gameScreen.querySelector('canvas');
 	this.ctx = this.canvas.getContext('2d');
 
 	// Save reference to the score and lives elements
-	this.livesElement = this.gameScreen.querySelector('.lives .value');
-	this.scoreElement = this.gameScreen.querySelector('.score .value');
+	this.livesElement = this.gameContainer.querySelector('.lives .value');
+	this.scoreElement = this.gameContainer.querySelector('.score .value');
+
 
 	// Set the canvas dimensions to match the parent
 	this.containerWidth = this.canvasContainer.offsetWidth;
@@ -82,10 +87,15 @@ Game.prototype.startLoop = function() {
 		//Checks if enemies hit the player
 		this.checkCollisions();
 
+		if (this.bullets.length > 0 && this.enemies.length >0) {
+			this.checkbulletEnemyCollisions();
+		};
+	
+
 		this.player.handleScreenCollision();
 
     // 4. Move existing enemies
-		// 5. Check if any enemy is going of the screen
+		// 5. Check if any enemy is going off the screen
 		this.enemies = this.enemies.filter(function(enemy) {
 			enemy.updatePosition();
 			return enemy.isInsideScreen();
@@ -97,17 +107,11 @@ Game.prototype.startLoop = function() {
 			return bullet.isInsideScreen();
 		});
 
-		//
-		// 6. Check if bullets hit enemies
-		//HELP how to do this? First check pablo's zombie game code!!!
-		//
-
-
-// 2. CLEAR CANVAS
+	// 2. CLEAR CANVAS
 		this.ctx.clearRect(0 ,0, this.canvas.width, this.canvas.height);
 
 
-// 3. UPDATE CANVAS
+	// 3. UPDATE CANVAS
 		// Draw the player
 		this.player.draw();
 		// Draw the enemies
@@ -159,11 +163,27 @@ Game.prototype.checkCollisions = function() {
   // as array method callbacks have a default `this` of undefined.
 };
 
-Game.prototype.updateGamesStats = function() {
-	this.score += 1;
-	this.livesElement.innerHTML = this.player.lives;
-	// this.scoreElement.innerHTML = this.score;
+// 6. Check if bullets hit enemies
+Game.prototype.checkbulletEnemyCollisions = function() {
+	
+	this.enemies.forEach (function (enemy) {
+		this.bullets.forEach (function (bullet) {
+			if (bullet.didCollide(enemy) ) {
+				enemy.y = this.canvas.height + 2000;
+				bullet.y = 0 - 2000;
+				this.score = this.score +10;		
+				console.log('this is the', this.score);		
+			}
+		}, this);
+	}, this);
 };
+
+Game.prototype.updateGamesStats = function() {
+	// this.score += 1;
+	this.livesElement.innerHTML = this.player.lives;
+	this.scoreElement.innerHTML = this.score;
+};
+
 //ERRRORRRRRRRRRR. DEFINIR SCORE. ERROR EN CONSOLE
 
 Game.prototype.createBullet = function () {

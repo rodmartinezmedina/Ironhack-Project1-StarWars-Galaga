@@ -53,10 +53,10 @@ function main() {
 						<span class="label">Lives:</span>
 						<span class="value"></span>
 					</div>
-					<div="score">
+					<div class="score">
 						<span class="label">Score:</span>
 						<span class="value"></span>
-					</div="score">
+					</div>
 				</header>
 				<div class="canvas-container">
 					<canvas></canvas>
