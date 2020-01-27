@@ -1,6 +1,6 @@
 function Bullet(canvas, playerX){
     this.canvas = canvas;
-    this.size = 30;
+    this.size = 20;
     this.x = playerX;
     this.y = canvas.height - 70;
     this.ctx = canvas.getContext("2d");
