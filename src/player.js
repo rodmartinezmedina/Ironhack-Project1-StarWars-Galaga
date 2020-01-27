@@ -4,12 +4,13 @@ function Player(canvas, lives) {
 	this.canvas = canvas;
 	this.ctx = this.canvas.getContext('2d');
 	this.lives = lives;
-	this.size = 50;
+	this.size = 100;
 	this.x = canvas.width / 2;
-	this.y = canvas.height - 50;
+	this.y = canvas.height - 100;
 	this.direction = 0;
-	this.speed = 5;
+	this.speed = 8;
 	this.canShootBullet = true;
+	this.imgShip1;
 }
 
 Player.prototype.setDirection = function(direction) {
@@ -57,7 +58,7 @@ Player.prototype.handleScreenCollision = function() {
 	//Should I write here this.x or this.y????
 	this.x = this.x + this.direction * this.speed;
 	var screenLeft = 0;
-	var screenRight = this.canvas.width - 50;
+	var screenRight = this.canvas.width - 100;
 	
 	if (this.x < screenLeft) this.direction = 0;
 	else if (this.x > screenRight) this.direction = 0;
@@ -69,16 +70,11 @@ Player.prototype.removeLife = function() {
 };
 
 
-Player.prototype.draw = function () {
-	
-// check how to insert image in file 
-// step 14 of tutorial;
-	this.ctx.fillStyle = 'red';
-	// fillRect(x, y, width, height)
-	this.ctx.fillRect(
-		this.x,
-		this.y,
-		this.size,
-		this.size,
-	);
+Player.prototype.draw = function () {	
+
+	// this.ctx.fillStyle = 'red';
+	// this.ctx.fillRect(this.x, this.y, this.size, this.size);
+	this.imgShip1 = new Image();   // Create new <img> element
+	this.imgShip1.src = 'images/Tie Fighter - 03.png'; // Set source path
+	this.ctx.drawImage(this.imgShip1, this.x, this.y, this.size, this.size);
 };

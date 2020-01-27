@@ -1,7 +1,7 @@
 'use strict';
 
 function Game() {
-	this.canvas == null;
+	this.canvas = null;
 	this.ctx = null;
 	this.bullets = [];
 	this.enemies = [];
@@ -9,7 +9,8 @@ function Game() {
 	this.gameIsOver = false;
 	this.gameScreen = null;
 	this.score = 0;
-	
+	this.backImg1 = new Image();   // Create new <img> element
+	this.backImg1.src = './images/background-space2.jpg'; // Set source path
 }
 
 Game.prototype.start = function() {
@@ -20,7 +21,7 @@ Game.prototype.start = function() {
 
 	this.canvas = this.gameScreen.querySelector('canvas');
 	this.ctx = this.canvas.getContext('2d');
-
+	
 	// Save reference to the score and lives elements
 	this.livesElement = this.gameContainer.querySelector('.lives .value');
 	this.scoreElement = this.gameContainer.querySelector('.score .value');
@@ -112,6 +113,9 @@ Game.prototype.startLoop = function() {
 
 
 	// 3. UPDATE CANVAS
+
+//draw background
+	this.ctx.drawImage(this.backImg1,0, 0);
 		// Draw the player
 		this.player.draw();
 		// Draw the enemies
@@ -200,7 +204,7 @@ Game.prototype.createBullet = function () {
 			(function() {
 				this.player.canShootBullet = true;
 			}.bind(this),
-			400)
+			300)
 	};
 		// console.log("bullet created");
 };

@@ -1,4 +1,4 @@
-/* ---- reset ---- */
+---- reset ----
 
   html {
     box-sizing: border-box;
@@ -76,9 +76,13 @@
   
   .game-container .value {
     font-style: italic;
+    border: 3px black;
   }
   
   .game-container .canvas-container {
     flex: 1;
-    border: 40px blue;
-  }
+ }
+
+  canvas {
+    border: 10px red;
+ }
