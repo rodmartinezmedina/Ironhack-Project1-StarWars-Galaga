@@ -187,12 +187,24 @@ Game.prototype.updateGamesStats = function() {
 //ERRRORRRRRRRRRR. DEFINIR SCORE. ERROR EN CONSOLE
 
 Game.prototype.createBullet = function () {
-	var playerPositionX = this.player.x;
-	var newBullet = new Bullet(this.canvas, playerPositionX);
-			this.bullets.push(newBullet);
-		}
-	
-	// console.log("bullet created");
+	if (this.player.canShootBullet) {
+		var playerPositionX = this.player.x;
+		var newBullet = new Bullet(this.canvas, playerPositionX);
+		this.bullets.push(newBullet);
+
+		//can shoot or not 
+		this.player.canShootBullet = false;
+		
+		//timeout for shooting
+		setTimeout
+			(function() {
+				this.player.canShootBullet = true;
+			}.bind(this),
+			400)
+	};
+		// console.log("bullet created");
+};
+
 
 Game.prototype.passGameStats = function() {};
 

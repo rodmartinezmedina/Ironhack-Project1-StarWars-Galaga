@@ -9,6 +9,7 @@ function Player(canvas, lives) {
 	this.y = canvas.height - 50;
 	this.direction = 0;
 	this.speed = 5;
+	this.canShootBullet = true;
 }
 
 Player.prototype.setDirection = function(direction) {
