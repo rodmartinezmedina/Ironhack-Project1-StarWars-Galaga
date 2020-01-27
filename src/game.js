@@ -71,20 +71,17 @@ Game.prototype.startLoop = function() {
 		var loop = function() {
 		// console.log('in loop');
 
-		
-    // 0.Player already created - via `game.start()`
 		// 1. Create new enemies randomly
 		if (Math.random() > 0.98) {
 			var randomX = this.canvas.width * Math.random();
 			var newEnemy = new Enemy(this.canvas, randomX, 5);
 			this.enemies.push(newEnemy);
 		}
-			// HELP
+			// HELP post MVP
 			//how to generate enemies based on regular interval time
 			//how to randomly locate the enemies in the delimited waiting
 			// zone in the top of the screen
 
-	
 		//Checks if enemies hit the player
 		this.checkCollisions();
 

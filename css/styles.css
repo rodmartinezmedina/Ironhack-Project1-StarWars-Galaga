@@ -3,46 +3,32 @@
   html {
     box-sizing: border-box;
   }
-  *, *:before, *:after {
-    box-sizing: inherit;
+  /* *, *:before, *:after {
+    box-sizing: inherit; */
   }
   
   body {
-    margin: 0;
-    padding: 0;
+
   }
   
-  
-  /* ---- typography ---- */
-  
-  body {
-    color: #111;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 147%;
-  }
-  
-  p {
+   p {
     margin: 0;
   }
-  
     
-  /* ---- layout ---- */
-  
   html, body {
     height: 100%;
   }
   
   .game-container {
-    margin: 0 20px;
-    border: 55px green;
+    margin: 0 40px;
+    
   }
   
   @media (min-width: 768px) {
     .container {
       max-width: 728px;
       margin: 0 auto;
-      
+
     }
   }
   
@@ -50,7 +36,7 @@
   /* ---- components ---- */
   
   .game-container {
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -59,15 +45,15 @@
   .game-container header {
     height: 50px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
   
   .game-container .lives {
-    flex: 1;
+    /* flex: 1; */
   }
   
   .game-container .score {
-    flex: 1;
+    /* flex: 1; */
   }
   
   .game-container .label {
@@ -83,6 +69,7 @@
     flex: 1;
  }
 
-  canvas {
-    border: 10px red;
+  .canvas-container {
+    border: 40px red;
+    max-width: 800px;
  }

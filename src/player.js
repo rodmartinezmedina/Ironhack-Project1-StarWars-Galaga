@@ -4,11 +4,11 @@ function Player(canvas, lives) {
 	this.canvas = canvas;
 	this.ctx = this.canvas.getContext('2d');
 	this.lives = lives;
-	this.size = 100;
+	this.size = 90;
 	this.x = canvas.width / 2;
-	this.y = canvas.height - 100;
+	this.y = canvas.height - 90;
 	this.direction = 0;
-	this.speed = 8;
+	this.speed = 6;
 	this.canShootBullet = true;
 	this.imgShip1;
 }
@@ -58,7 +58,7 @@ Player.prototype.handleScreenCollision = function() {
 	//Should I write here this.x or this.y????
 	this.x = this.x + this.direction * this.speed;
 	var screenLeft = 0;
-	var screenRight = this.canvas.width - 100;
+	var screenRight = this.canvas.width - 90;
 	
 	if (this.x < screenLeft) this.direction = 0;
 	else if (this.x > screenRight) this.direction = 0;
@@ -75,6 +75,6 @@ Player.prototype.draw = function () {
 	// this.ctx.fillStyle = 'red';
 	// this.ctx.fillRect(this.x, this.y, this.size, this.size);
 	this.imgShip1 = new Image();   // Create new <img> element
-	this.imgShip1.src = 'images/Tie Fighter - 03.png'; // Set source path
+	this.imgShip1.src = 'images/Millenium Falcon - 02.png'; // Set source path
 	this.ctx.drawImage(this.imgShip1, this.x, this.y, this.size, this.size);
 };
