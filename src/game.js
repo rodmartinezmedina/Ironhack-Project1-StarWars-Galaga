@@ -111,13 +111,13 @@ Game.prototype.startLoop = function() {
 				// 	}.bind(this), 5000);
 
 
-		if (Math.random() > 0.999) {
+		if (Math.random() > 0.998) {
 			this.createEnemy('/images/Y-Wing.png')
 		} 
-		else if (Math.random() > 0.998) {
+		else if (Math.random() > 0.995) {
 			this.createEnemy('/images/Slave I.png')
 		}
-		else if (Math.random() > 0.996) {
+		else if (Math.random() > 0.992) {
 		this.createEnemy('/images/Tie Fighter - 02.png')
 		}
 		else if (Math.random() > 0.99) {
@@ -276,6 +276,7 @@ Game.prototype.createBullet = function () {
 
 
 Game.prototype.passGameStats = function() {};
+
 
 Game.prototype.gameOver = function() {
 	this.gameIsOver = true;
