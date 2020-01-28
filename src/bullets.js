@@ -4,7 +4,7 @@ function Bullet(canvas, playerX){
     this.size = 40;
     this.x = playerX;
     this.y = canvas.height - 70;    
-    this.speed = 7;
+    this.speed = 8;
     this.direction = 1;  
     this.laserShot;  
     // this.image = new Image();

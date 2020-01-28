@@ -5,6 +5,7 @@ function Game() {
 	this.ctx = null;
 	this.bullets = [];
 	this.enemies = [];
+	this.bigEnemies = [];
 	this.player = null;
 	this.gameIsOver = false;
 	this.gameScreen = null;
@@ -74,13 +75,21 @@ Game.prototype.startLoop = function() {
 		// 1. Create new enemies randomly
 		if (Math.random() > 0.98) {
 			var randomX = this.canvas.width * Math.random();
-			var newEnemy = new Enemy(this.canvas, randomX, 5);
+			var newEnemy = new Enemy(this.canvas, randomX, 3);
 			this.enemies.push(newEnemy);
+			var newBigEnemy = new BigEnemy(this.canvas, randomX, 2);
+			this.bigEnemies.push(newBigEnemy);
 		}
+		// else if (Math.random() > 0.95) {
+		// 	var randomX = this.canvas.width * Math.random();
+		// 	var newBigEnemy = new BigEnemy(this.canvas, randomX, 1);
+		// 	this.bigEnemies.push(newBigEnemy);
+		// }
+
+
+
 			// HELP post MVP
-			//how to generate enemies based on regular interval time
-			//how to randomly locate the enemies in the delimited waiting
-			// zone in the top of the screen
+			//how to randomly locate the enemies in the delimited waiting zone in the top of the screen
 
 		//Checks if enemies hit the player
 		this.checkCollisions();
@@ -98,6 +107,13 @@ Game.prototype.startLoop = function() {
 			enemy.updatePosition();
 			return enemy.isInsideScreen();
 		});
+
+
+		// this.bigEnemies = this.bigEnemies.filter(function(bigEnemy) {
+		// 	bigEnemy.updatePosition();
+			
+		// });
+
 
 		this.bullets = this.bullets.filter(function(bullet) {
 			bullet.update();
@@ -119,6 +135,11 @@ Game.prototype.startLoop = function() {
 		this.enemies.forEach(function(enemy) {
 			enemy.draw();
 		});
+		//Draw big enemies
+		this.bigEnemies.forEach(function(bigEnemy) {
+			bigEnemy.draw();
+		});
+
 		//Draw the bullets
 		this.bullets.forEach(function (bullet) {
 			bullet.draw()
