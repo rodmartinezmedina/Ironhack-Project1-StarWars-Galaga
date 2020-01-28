@@ -26,36 +26,51 @@ Player.prototype.didCollide = function(enemy) {
 	var playerRight = this.x + this.size;
 	var playerTop = this.y;
 	var playerBottom = this.y + this.size;
-
-	
+		
 	var enemyLeft = enemy.x;
 	var enemyRight = enemy.x + enemy.size;
 	var enemyTop = enemy.y;
-	var enemyBottom = enemy.y + enemy.size;
+	var enemyBottom = enemy.y + enemy.size;	
 
-// Check if the enemy intersects any of the player's sides
-var crossLeft = enemyLeft <= playerRight && enemyLeft >= playerLeft;
+	// Check if the enemy intersects any of the player's sides
+	var crossLeft = enemyLeft <= playerRight && enemyLeft >= playerLeft;
+	var crossRight = enemyRight >= playerLeft && enemyRight <= playerRight;
+	var crossBottom = enemyBottom >= playerTop && enemyBottom <= playerBottom;
+	var crossTop = enemyTop <= playerBottom && enemyTop >= playerTop;
 
-var crossRight = enemyRight >= playerLeft && enemyRight <= playerRight;
-
-var crossBottom = enemyBottom >= playerTop && enemyBottom <= playerBottom;
-
-var crossTop = enemyTop <= playerBottom && enemyTop >= playerTop;
-
-if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
-	return true;
-}  
-return false;
+	if ((crossLeft || crossRight) && (crossTop || crossBottom)) {
+		return true;
+	}
+		return false;	
 };
 
 
+Player.prototype.didCollideBig = function(bigEnemy) {
+	var playerLeft = this.x;
+	var playerRight = this.x + this.size;
+	var playerTop = this.y;
+	var playerBottom = this.y + this.size;
+	
+	var bigEnemyLeft = bigEnemy.x;
+	var bigEnemyRight = bigEnemy.x + bigEnemy.size;
+	var bigEnemyTop = bigEnemy.y;
+	var bigEnemyBottom = bigEnemy.y + bigEnemy.size;
+	// Check if the Big enemy intersects any of the player's sides
+	var bigCrossLeft = bigEnemyLeft <= playerRight && bigEnemyLeft >= playerLeft;
+	var bigCrossRight = bigEnemyRight >= playerLeft && bigEnemyRight <= playerRight;
+	var bigCrossBottom = bigEnemyBottom >= playerTop && bigEnemyBottom <= playerBottom;
+	var bigCrossTop = bigEnemyTop <= playerBottom && bigEnemyTop >= playerTop;
+	
+	if ((bigCrossLeft || bigCrossRight) && (bigCrossTop || bigCrossBottom)) {
+		return true;
+	}
+		return false; 
+};
+
+
+
 Player.prototype.handleScreenCollision = function() {
-	//
-	//
-	//check step 14 for precise instructions
-	//
-	//HELP 
-	//Should I write here this.x or this.y????
+
 	this.x = this.x + this.direction * this.speed;
 	var screenLeft = 0;
 	var screenRight = this.canvas.width - 90;

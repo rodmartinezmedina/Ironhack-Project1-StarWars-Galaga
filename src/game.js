@@ -67,41 +67,71 @@ Game.prototype.start = function() {
 	this.startLoop();
 };
 
+Game.prototype.createBigEnemy = function (source) {
+	var randomX = this.canvas.width * Math.random();
+	var newBigEnemy = new BigEnemy(this.canvas, randomX, 1, source);
+	this.bigEnemies.push(newBigEnemy);
+}
+
+Game.prototype.createEnemy = function (source) {
+	var randomX = this.canvas.width * Math.random();
+	var newEnemy = new Enemy(this.canvas, randomX, 1, source);
+	this.enemies.push(newEnemy);
+}
 
 Game.prototype.startLoop = function() {
 		var loop = function() {
 		// console.log('in loop');
-
+		// var intervalId = 
 		// 1. Create new enemies randomly
-		if (Math.random() > 0.98) {
-			var randomX = this.canvas.width * Math.random();
-			var newEnemy = new Enemy(this.canvas, randomX, 3);
-			this.enemies.push(newEnemy);
-			var newBigEnemy = new BigEnemy(this.canvas, randomX, 2);
-			this.bigEnemies.push(newBigEnemy);
+			// setInterval( ()=> {
+			// 	if (Math.random() > 0.999) {
+			// 		this.createBigEnemy('/images/Death Star - 1st.png')
+			// 	} else if (Math.random() > 0.99) {
+			// 		this.createBigEnemy('/images/Tie Fighter - 02.png')
+			//   } else if (Math.random() > 0.998) {
+			// 		this.createBigEnemy('/images/Tie Bomber.png');
+			// 	} 
+			// }, 10000); 
+// clearInterval(intervalId);
+
+		if (Math.random() > 0.9999) {
+			this.createBigEnemy('/images/Death Star - 1st.png')
+		} 
+		else if (Math.random() > 0.999) {
+		this.createBigEnemy('/images/Death Star - 2nd.png')
 		}
-		// else if (Math.random() > 0.95) {
-		// 	var randomX = this.canvas.width * Math.random();
-		// 	var newBigEnemy = new BigEnemy(this.canvas, randomX, 1);
-		// 	this.bigEnemies.push(newBigEnemy);
-		// }
+		else if (Math.random() > 0.998) {
+		this.createBigEnemy('/images/Trade Federation Battleship.png');
+		};		
 
 
 
-			// HELP post MVP
-			//how to randomly locate the enemies in the delimited waiting zone in the top of the screen
+		if (Math.random() > 0.995) {
+			this.createEnemy('/images/Imperial Shuttle - 01.png')
+		} 
+		else if (Math.random() > 0.992) {
+		this.createEnemy('/images/Tie Fighter - 02.png')
+		}
+		else if (Math.random() > 0.99) {
+		this.createEnemy('/images/Tie Bomber.png');
+		};	
+
+
+		
+		// HELP post MVP
+		//how to randomly locate the enemies in the delimited waiting zone in the top of the screen
 
 		//Checks if enemies hit the player
 		this.checkCollisions();
 
-		if (this.bullets.length > 0 && this.enemies.length >0) {
+		if (this.bullets.length > 0 && this.enemies.length > 0) {
 			this.checkbulletEnemyCollisions();
 		};
 	
-
 		this.player.handleScreenCollision();
 
-    // 4. Move existing enemies
+	    // 4. Move existing enemies
 		// 5. Check if any enemy is going off the screen
 		this.enemies = this.enemies.filter(function(enemy) {
 			enemy.updatePosition();
@@ -109,10 +139,10 @@ Game.prototype.startLoop = function() {
 		});
 
 
-		// this.bigEnemies = this.bigEnemies.filter(function(bigEnemy) {
-		// 	bigEnemy.updatePosition();
-			
-		// });
+		this.bigEnemies = this.bigEnemies.filter(function(bigEnemy) {
+		bigEnemy.updatePosition();
+		return bigEnemy.isInsideScreen();
+		});
 
 
 		this.bullets = this.bullets.filter(function(bullet) {
@@ -127,8 +157,8 @@ Game.prototype.startLoop = function() {
 
 	// 3. UPDATE CANVAS
 
-//draw background
-	this.ctx.drawImage(this.backImg1,0, 0);
+		//draw background
+		this.ctx.drawImage(this.backImg1,0, 0);
 		// Draw the player
 		this.player.draw();
 		// Draw the enemies
@@ -167,15 +197,24 @@ Game.prototype.startLoop = function() {
 Game.prototype.checkCollisions = function() {
 	
 	this.enemies.forEach (function (enemy) {
-
 		if (this.player.didCollide(enemy) ) {
-		
+			this.player.removeLife();
+			console.log('lives', this.player.lives);
+			//Move the enemy offscreen
+			enemy.x = 0 - enemy.size;
+			if (this.player.lives === 0) {
+				this.gameOver();
+			}
+		}
+	}, this)
+
+	this.bigEnemies.forEach (function (bigEnemy) {
+		if (this.player.didCollideBig(bigEnemy) ) {
 			this.player.removeLife();
 			console.log('lives', this.player.lives);
 
 			//Move the enemy offscreen
-			enemy.x = 0 - enemy.size;
-
+			bigEnemy.x = 0 - bigEnemy.size;
 			if (this.player.lives === 0) {
 				this.gameOver();
 			}
@@ -184,6 +223,8 @@ Game.prototype.checkCollisions = function() {
 	  // We have to pass `this` value as the second argument
   // as array method callbacks have a default `this` of undefined.
 };
+
+
 
 // 6. Check if bullets hit enemies
 Game.prototype.checkbulletEnemyCollisions = function() {
@@ -206,7 +247,6 @@ Game.prototype.updateGamesStats = function() {
 	this.scoreElement.innerHTML = this.score;
 };
 
-//ERRRORRRRRRRRRR. DEFINIR SCORE. ERROR EN CONSOLE
 
 Game.prototype.createBullet = function () {
 	if (this.player.canShootBullet) {

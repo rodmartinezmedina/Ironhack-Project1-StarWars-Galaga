@@ -19,10 +19,14 @@ function main() {
 
   function createSplashScreen() {
 		splashScreen = buildDom(`
-		<main>
+		<main class="splash-screen-container">
 			<h1>Use the force</h1>
+			<img>
 			<button>Start game</button>
-			<p>Use left/right arrows to move the player. Use space bar to shoot you enemies</p> 
+			<p>Use left/right arrows to move the player</p>
+			<p>Use 's' key to shoot you enemies</p>
+			<p>Use down arrow to stop the player</p> 
+
 		</main>
 	`);
 
