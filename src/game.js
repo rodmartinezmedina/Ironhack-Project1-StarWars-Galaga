@@ -11,7 +11,9 @@ function Game() {
 	this.gameScreen = null;
 	this.score = 0;
 	this.backImg1 = new Image();   // Create new <img> element
-	this.backImg1.src = './images/background-space2.jpg'; // Set source path
+	this.backImg1.src = './images/background-space4.jpg'; // Set source path
+	this.printBigEnemy = true;
+	this.counter = 0;
 }
 
 Game.prototype.start = function() {
@@ -81,29 +83,50 @@ Game.prototype.createEnemy = function (source) {
 
 Game.prototype.startLoop = function() {
 		var loop = function() {
-		// console.log('in loop');
-		// var intervalId = 
-		// 1. Create new enemies randomly
-			// setInterval( ()=> {
-			// 	if (Math.random() > 0.999) {
-			// 		this.createBigEnemy('/images/Death Star - 1st.png')
-			// 	} else if (Math.random() > 0.99) {
-			// 		this.createBigEnemy('/images/Tie Fighter - 02.png')
-			//   } else if (Math.random() > 0.998) {
-			// 		this.createBigEnemy('/images/Tie Bomber.png');
-			// 	} 
-			// }, 10000); 
-// clearInterval(intervalId);
 
-		if (Math.random() > 0.9999) {
-			this.createBigEnemy('/images/Death Star - 1st.png')
-		} 
-		else if (Math.random() > 0.999) {
-		this.createBigEnemy('/images/Death Star - 2nd.png')
-		}
-		else if (Math.random() > 0.998) {
-		this.createBigEnemy('/images/Trade Federation Battleship.png');
-		};		
+			this.counter++;
+			
+			if (this.counter % 600 === 0) {
+				console.log(this.counter)
+				this.createBigEnemy('/images/Death Star - 1st.png');;
+			}
+			else if (this.counter % 900 === 0) {
+				console.log(this.counter);
+				this.createBigEnemy('/images/Death Star - 2nd.png');
+			}
+			else if (this.counter % 1500 === 0 ) {
+				this.createBigEnemy('/images/Trade Federation Battleship.png');
+			}
+
+
+		// 1. Create new enemies randomly
+
+				// if (this.printBigEnemy) {
+				// 	this.createBigEnemy('/images/Death Star - 1st.png');
+				// 	this.printBigEnemy = false;
+
+				// 	setTimeout(function () {
+				// 		this.printBigEnemy = true;
+				// 	}.bind(this), 5000);
+											
+
+		// 		} else if (Math.random() > 0.99) {
+		// 			this.createBigEnemy('/images/Tie Fighter - 02.png')
+		// 	  } else if (Math.random() > 0.998) {
+		// 			this.createBigEnemy('/images/Tie Bomber.png');
+		// 		} 
+
+
+
+		// if (Math.random() > 0.9999) {
+		// 	this.createBigEnemy('/images/Death Star - 1st.png')
+		// } 
+		// else if (Math.random() > 0.999) {
+		// this.createBigEnemy('/images/Death Star - 2nd.png')
+		// }
+		// else if (Math.random() > 0.998) {
+		// this.createBigEnemy('/images/Trade Federation Battleship.png');
+		// };
 
 
 
@@ -118,7 +141,7 @@ Game.prototype.startLoop = function() {
 		};	
 
 
-		
+
 		// HELP post MVP
 		//how to randomly locate the enemies in the delimited waiting zone in the top of the screen
 

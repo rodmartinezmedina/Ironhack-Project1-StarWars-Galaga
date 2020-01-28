@@ -25,8 +25,7 @@ function main() {
 			<button>Start game</button>
 			<p>Use left/right arrows to move the player</p>
 			<p>Use 's' key to shoot you enemies</p>
-			<p>Use down arrow to stop the player</p> 
-
+			<p>Use down arrow to stop the player</p>
 		</main>
 	`);
 
@@ -128,6 +127,7 @@ function main() {
   };
 
   function gameOver(score) {
+		clearInterval(game.intervalId);
 	  removeGameScreen();
 	  createGameOverScreen(score);
   };

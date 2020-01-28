@@ -1,40 +1,60 @@
----- reset ----
+/* ---- reset ---- */
+
+@font-face { font-family: h1-font; src: url('../fonts/StarjediSpecialEdition-9Bqy.ttf')};
+
 
   html {
     box-sizing: border-box;
   }
   /* *, *:before, *:after {
-    box-sizing: inherit; */
-  }
+    box-sizing: inherit;
+  } */
   
-  body {
-
-  }
-  
-   p {
-    margin: 0;
-  }
-    
+   
   html, body {
     height: 100%;
   }
   
-  .game-container {
-    margin: 0 40px;
+  @media (min-width: 768px) {
+    canvas {
+      max-width: 728px;
+      margin: 0 auto;   
+    }
     
   }
-  
-  @media (min-width: 768px) {
-    .container {
-      max-width: 728px;
-      margin: 0 auto;
 
-    }
+  p {
+    margin: 5;
   }
   
-  
-  /* ---- components ---- */
-  
+/* SPLASH SCREEN */
+
+.splash-screen-container {
+  /* background-image: url('/images/background-space4.jpg'); */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/background-space4.jpg');
+  background-size: cover;
+  min-height: 1000px;
+  background-clip: border-box;
+  color:white;
+}
+
+.splash-screen-container h1 {
+  margin-top: 20px;
+  color: yellow;
+  font-family: fantasy;
+}
+
+
+
+
+
+
+  /* GAME SCREEN */
+
+  .game-container {
+    margin: 0 40px;    
+  }
+
   .game-container {
     text-align: left;
     display: flex;
