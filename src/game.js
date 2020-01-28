@@ -84,6 +84,8 @@ Game.prototype.createEnemy = function (source) {
 Game.prototype.startLoop = function() {
 		var loop = function() {
 
+
+					// 1. Create new Big enemies with set time intervals
 			this.counter++;
 			
 			if (this.counter % 600 === 0) {
@@ -98,8 +100,7 @@ Game.prototype.startLoop = function() {
 				this.createBigEnemy('/images/Trade Federation Battleship.png');
 			}
 
-
-		// 1. Create new enemies randomly
+			//Another set time approach for the enemies with fixed times
 
 				// if (this.printBigEnemy) {
 				// 	this.createBigEnemy('/images/Death Star - 1st.png');
@@ -108,32 +109,15 @@ Game.prototype.startLoop = function() {
 				// 	setTimeout(function () {
 				// 		this.printBigEnemy = true;
 				// 	}.bind(this), 5000);
-											
-
-		// 		} else if (Math.random() > 0.99) {
-		// 			this.createBigEnemy('/images/Tie Fighter - 02.png')
-		// 	  } else if (Math.random() > 0.998) {
-		// 			this.createBigEnemy('/images/Tie Bomber.png');
-		// 		} 
 
 
-
-		// if (Math.random() > 0.9999) {
-		// 	this.createBigEnemy('/images/Death Star - 1st.png')
-		// } 
-		// else if (Math.random() > 0.999) {
-		// this.createBigEnemy('/images/Death Star - 2nd.png')
-		// }
-		// else if (Math.random() > 0.998) {
-		// this.createBigEnemy('/images/Trade Federation Battleship.png');
-		// };
-
-
-
-		if (Math.random() > 0.995) {
-			this.createEnemy('/images/Imperial Shuttle - 01.png')
+		if (Math.random() > 0.999) {
+			this.createEnemy('/images/Y-Wing.png')
 		} 
-		else if (Math.random() > 0.992) {
+		else if (Math.random() > 0.998) {
+			this.createEnemy('/images/Slave I.png')
+		}
+		else if (Math.random() > 0.996) {
 		this.createEnemy('/images/Tie Fighter - 02.png')
 		}
 		else if (Math.random() > 0.99) {
