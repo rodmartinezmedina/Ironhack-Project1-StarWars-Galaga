@@ -39,7 +39,7 @@ Game.prototype.start = function() {
 
 
 	// Create a new player for the current game
-	this.player = new Player (this.canvas, 5);
+	this.player = new Player (this.canvas, 10);
 
 	// Add event listener for moving the player.Event listener callback function
 	this.handleKeyDown = function(event) {
@@ -71,11 +71,13 @@ Game.prototype.start = function() {
 	this.startLoop();
 };
 
+
 Game.prototype.createBigEnemy = function (source) {
 	var randomX = this.canvas.width * Math.random();
 	var newBigEnemy = new BigEnemy(this.canvas, randomX, 1, source);
 	this.bigEnemies.push(newBigEnemy);
 }
+
 
 Game.prototype.createEnemy = function (source) {
 	var randomX = this.canvas.width * Math.random();
@@ -83,12 +85,12 @@ Game.prototype.createEnemy = function (source) {
 	this.enemies.push(newEnemy);
 }
 
+
 Game.prototype.createFastEnemy = function (source) {
 	var randomX = this.canvas.width * Math.random();
 	var newFastEnemy = new Enemy(this.canvas, randomX, 4, source);
 	this.enemies.push(newFastEnemy);
 }
-
 
 
 Game.prototype.startLoop = function() {

@@ -18,14 +18,13 @@
   html, body {
     height: 100%;
   }
-  
+
   @media (min-width: 768px) {
     canvas {
-      max-width: 728px;
+      max-width: 1200px;
       margin: 0 auto;   
     }    
   }
-
   p {
     margin: 5;
   }
@@ -77,32 +76,34 @@
 }
 
 
-
-  /* GAME SCREEN */
-
-  .game-container {
-    margin: 0 40px;    
-  }
+/*  */
+/* GAME SCREEN */
+/*  */
 
   .game-container {
+    margin: 0 20px;
     text-align: left;
     display: flex;
     flex-direction: column;
     height: 100%;
+    align-items: center;
+    /* flex: 1; */
   }
   
   .game-container header {
     height: 50px;
     display: flex;
-    align-items: flex-start;
+		align-items: center;
+		flex-direction: row;
+		justify-content: center;
+    
   }
   
-  .game-container .lives {
-    /* flex: 1; */
+  .game-container .lives{
+		margin-right: 110px;
   }
   
   .game-container .score {
-    /* flex: 1; */
   }
   
   .game-container .label {
@@ -114,14 +115,21 @@
     border: 3px black;
   }
   
-  .game-container .canvas-container {
+  /* never touch this one. it ruins the canvas */
+.game-container .canvas-container {
     flex: 1;
+    /* border: 40px solid red; */
+    width: 800px;
  }
 
-  .canvas-container {
-    border: 40px red;
-    max-width: 800px;
- }
+/* no funciona nada nunca. arreglar */
+.canvas-container {
+
+}
+
+  /*  */
+  /* GAME OVER SCREEN */
+  /*  */
 
  .gameOver-screen-container {
   /* background-image: url('/images/background-space4.jpg'); */

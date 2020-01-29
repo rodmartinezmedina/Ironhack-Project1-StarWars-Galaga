@@ -18,6 +18,7 @@ function main() {
   // -- splash screen
 
   function createSplashScreen() {
+		removeGameOverScreen();
 		splashScreen = buildDom(`
 		<main class="splash-screen-container">
 			<h1>use the force</h1>
@@ -98,7 +99,7 @@ function main() {
 		//
 		//
 		var button = gameOverScreen.querySelector('button');
-		button.addEventListener('click', startGame);
+		button.addEventListener('click', createSplashScreen);
 
 		var span = gameOverScreen.querySelector('span');
 		span.innerText = score;
@@ -107,7 +108,7 @@ function main() {
   };
 
   function removeGameOverScreen() {
-		if (gameOverScreen !== undefined) {
+	if (gameOverScreen !== undefined) {
 			gameOverScreen.remove();
 		}
 	};
