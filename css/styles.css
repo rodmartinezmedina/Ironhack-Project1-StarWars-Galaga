@@ -8,7 +8,7 @@
 
 
   html {
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
   }
   /* *, *:before, *:after {
     box-sizing: inherit;
@@ -16,6 +16,7 @@
   
    
   html, body {
+    margin: 0;
     height: 100%;
   }
 
@@ -25,9 +26,6 @@
       margin: 0 auto;   
     }    
   }
-  p {
-    margin: 5;
-  }
   
 /* SPLASH SCREEN */
 
@@ -36,8 +34,10 @@
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/background-space3.jpg');
   background-size: cover;
   background-position: center;
-  min-height: 900px;
-  background-clip: border-box;
+  /* height: 100%; */
+  min-height: 100%;
+  min-width:100%;
+  /* background-clip: border-box; */
   color:white;
   display: flex;
   flex-direction: column;
@@ -47,9 +47,9 @@
 
 .splash-screen-container h1 {
   margin-top: 7rem;
-  margin-bottom: 10rem;
+  margin-bottom: 7rem;
   /* margin-bottom: 20rem; */
-  color: yellow;
+  color: rgb(230, 230, 29);
   font-family: 'Starjedi';
   font-size: 2.5rem;
   letter-spacing: 0.2rem;;
@@ -70,7 +70,7 @@
   border-radius: 7%;
   border-width: 4px;
   background-color: transparent;
-  color:yellow;
+  color:rgb(230, 230, 29);
   font-family: 'Starjedi';
   margin-bottom: 0.5rem;
 }
@@ -81,6 +81,10 @@
 /*  */
 
   .game-container {
+    background-color: black;
+    /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/background-space3.jpg'); */
+    background-size: cover;
+    background-position: center;
     margin: 0 20px;
     text-align: left;
     display: flex;
@@ -91,6 +95,9 @@
   }
   
   .game-container header {
+    font-family: 'Starjedi';
+    letter-spacing: 0.1em;;
+    color:white;
     height: 50px;
     display: flex;
 		align-items: center;
@@ -100,10 +107,13 @@
   }
   
   .game-container .lives{
-		margin-right: 110px;
+    margin-right: 110px;
+    color: rgb(34, 228, 34);
   }
   
   .game-container .score {
+    color: rgb(230, 230, 29);
+
   }
   
   .game-container .label {
@@ -119,8 +129,8 @@
 .game-container .canvas-container {
     flex: 1;
     /* border: 40px solid red; */
-    width: 800px;
- }
+    width: 900px;
+}
 
 /* no funciona nada nunca. arreglar */
 .canvas-container {
@@ -136,7 +146,8 @@
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/background-space3.jpg');
   background-size: cover;
   background-position: center;
-  min-height: 900px;
+  min-height: 100%;
+  min-width: 100%;;
   background-clip: border-box;
   color:white;
   display: flex;
@@ -147,19 +158,19 @@
 
 .gameOver-screen-container h1 {
   margin-top: 7rem;
-  margin-bottom: 7rem;
+  margin-bottom: 3rem;
   /* margin-bottom: 20rem; */
-  color: rgb(214, 40, 40);
+  color: rgb(196, 41, 41);
   font-family: 'Starjedi';
   font-size: 2.5rem;
   letter-spacing: 0.2rem;;
 }
 
 .gameOver-score {
-font-family: news-gothic-std, sans-serif;
-font-weight: 700;
-font-style: italic;
-font-size: 1.7rem;;
+  font-family: news-gothic-std, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.7rem;;
 }
 
 .gameOver-screen-container button {
@@ -168,7 +179,7 @@ font-size: 1.7rem;;
   border-radius: 7%;
   border-width: 4px;
   background-color: transparent;
-  color:yellow;
+  color:rgb(230, 230, 29);
   font-family: 'Starjedi';
   margin-bottom: 0.5rem;
 }
