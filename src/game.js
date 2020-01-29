@@ -10,7 +10,7 @@ function Game() {
 	this.gameIsOver = false;
 	this.gameScreen = null;
 	this.score = 0;
-	this.backImg1 = new Image();   // Create new <img> element
+	this.backImg1 = new Image();   // Create new <img> elementgit 
 	this.backImg1.src = './images/background-space4.jpg'; // Set source path
 	this.printBigEnemy = true;
 	this.counter = 0;
@@ -77,9 +77,16 @@ Game.prototype.createBigEnemy = function (source) {
 
 Game.prototype.createEnemy = function (source) {
 	var randomX = this.canvas.width * Math.random();
-	var newEnemy = new Enemy(this.canvas, randomX, 1, source);
+	var newEnemy = new Enemy(this.canvas, randomX, 2, source);
 	this.enemies.push(newEnemy);
 }
+
+Game.prototype.createFastEnemy = function (source) {
+	var randomX = this.canvas.width * Math.random();
+	var newFastEnemy = new Enemy(this.canvas, randomX, 4, source);
+	this.enemies.push(newFastEnemy);
+}
+
 
 Game.prototype.startLoop = function() {
 		var loop = function() {
@@ -115,7 +122,7 @@ Game.prototype.startLoop = function() {
 			this.createEnemy('/images/Y-Wing.png')
 		} 
 		else if (Math.random() > 0.995) {
-			this.createEnemy('/images/Slave I.png')
+			this.createFastEnemy('/images/Slave I.png')
 		}
 		else if (Math.random() > 0.992) {
 		this.createEnemy('/images/Tie Fighter - 02.png')
