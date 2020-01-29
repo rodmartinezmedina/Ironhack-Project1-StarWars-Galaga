@@ -111,4 +111,7 @@ Git
 https://github.com/rodmartinezmedina/Ironhack-Project1-StarWars-Galaga
 
 Slides
-URls for the project presentation (slides) Link Slides.com
+https://docs.google.com/presentation/d/1xGWgZKqUC9XR6nkk0CJqoxlWB2lPTKI8E2cDoilRvKw/edit?usp=sharing
+
+Deployment link
+https://rodmartinezmedina.github.io/Ironhack-Project1-StarWars-Galaga/

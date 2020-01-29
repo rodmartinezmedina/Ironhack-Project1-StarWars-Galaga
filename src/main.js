@@ -20,12 +20,16 @@ function main() {
   function createSplashScreen() {
 		splashScreen = buildDom(`
 		<main class="splash-screen-container">
-			<h1>Use the force</h1>
+			<h1>use the force</h1>
 			<img>
 			<button>Start game</button>
-			<p>Use left/right arrows to move the player</p>
-			<p>Use 's' key to shoot you enemies</p>
-			<p>Use down arrow to stop the player</p>
+
+			<div class = 'instructions-div'>
+				<p class = 'instructions' >Use left/right arrows to move the player</p>
+				<p class = 'instructions' >Use 's' key to shoot you enemies</p>
+				<p class = 'instructions' >Use down arrow to stop the player</p>
+			</div>
+
 		</main>
 	`);
 
@@ -81,13 +85,18 @@ function main() {
 
   function createGameOverScreen(score) {
 	  gameOverScreen = buildDom(`
-			<main>
-				<h1>Game Over</h1>
-				<p>Your score: <span></span></p>
+			<main class= 'gameOver-screen-container'>
+				<h1>Game over</h1>
+				<p class= 'gameOver-score'>Your score: <span></span></p>
 				<button>Restart</button>
+				<p class = 'instructions'>Press button to go to the main screen</p>
 			</main>			  
 		`)
 		
+		//
+		// if this doesnt work out change after the 'click' back to startGame
+		//
+		//
 		var button = gameOverScreen.querySelector('button');
 		button.addEventListener('click', startGame);
 
