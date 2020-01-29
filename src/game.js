@@ -145,33 +145,34 @@ Game.prototype.startLoop = function() {
 			this.createEnemy('images/Tie Bomber.png');
 		};	
 		
+		if (this.player.lives <= 3 ) {
+			document.querySelector(".lives").setAttribute("style", "color: rgb(196, 41, 41)")
+		};
 
 
-		// HELP post MVP
-		//how to randomly locate the enemies in the delimited waiting zone in the top of the screen
 
 		//Checks if enemies hit the player
 		this.checkCollisions();
 
+		//Checks if bullets hits the enemies
 		if (this.bullets.length > 0 && this.enemies.length > 0) {
 			this.checkbulletEnemyCollisions();
 		};
 	
+		//Keeps player inside the frame
 		this.player.handleScreenCollision();
 
 	  
-		// 5. Check if any enemy or yoda is going off the screen
+		//Check if any enemy or yoda is going off the screen
 		this.enemies = this.enemies.filter(function(enemy) {
 			enemy.updatePosition();
 			return enemy.isInsideScreen();
 		});
 
-
 		this.bigEnemies = this.bigEnemies.filter(function(bigEnemy) {
 		bigEnemy.updatePosition();
 		return bigEnemy.isInsideScreen();
 		});
-
 
 		this.bullets = this.bullets.filter(function(bullet) {
 			bullet.update();
@@ -185,12 +186,12 @@ Game.prototype.startLoop = function() {
 			return yoda.isInsideScreen();
 		});
 
-	// 2. CLEAR CANVAS
+
+		// 2. CLEAR CANVAS
 		this.ctx.clearRect(0 ,0, this.canvas.width, this.canvas.height);
 
 
-	// 3. UPDATE CANVAS
-
+		// 3. UPDATE CANVAS
 		//draw background
 		this.ctx.drawImage(this.backImg1, 0, 0, this.canvas.width, this.canvas.height);
 		// Draw the player
@@ -213,7 +214,7 @@ Game.prototype.startLoop = function() {
 		});
 
 
- // 4. TERMINATE LOOP IF GAME IS OVER
+ 		// 4. TERMINATE LOOP IF GAME IS OVER
 		if (!this.gameIsOver) {
 			window.requestAnimationFrame(loop);
 		}
@@ -292,10 +293,13 @@ Game.prototype.checkbulletEnemyCollisions = function() {
 };
 
 Game.prototype.updateGamesStats = function() {
-	// this.score += 1;
+	
 	this.livesElement.innerHTML = this.player.lives;
 	this.scoreElement.innerHTML = this.score;
 };
+
+
+
 
 
 Game.prototype.createBullet = function () {
@@ -316,9 +320,6 @@ Game.prototype.createBullet = function () {
 	};
 		// console.log("bullet created");
 };
-
-
-Game.prototype.passGameStats = function() {};
 
 
 Game.prototype.gameOver = function() {
