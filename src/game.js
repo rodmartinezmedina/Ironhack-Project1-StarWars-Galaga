@@ -16,6 +16,7 @@ function Game() {
 	this.counter = 0;
 }
 
+
 Game.prototype.start = function() {
 
 	// Save reference to canvas and container. Create ctx
@@ -60,6 +61,7 @@ Game.prototype.start = function() {
 		}
 	};
 
+
 	document.body.addEventListener (
 		'keydown',
 		this.handleKeyDown.bind(this));
@@ -86,6 +88,7 @@ Game.prototype.createFastEnemy = function (source) {
 	var newFastEnemy = new Enemy(this.canvas, randomX, 4, source);
 	this.enemies.push(newFastEnemy);
 }
+
 
 
 Game.prototype.startLoop = function() {
@@ -172,7 +175,7 @@ Game.prototype.startLoop = function() {
 	// 3. UPDATE CANVAS
 
 		//draw background
-		this.ctx.drawImage(this.backImg1,0, 0);
+		this.ctx.drawImage(this.backImg1, 0, 0, this.canvas.width, this.canvas.height);
 		// Draw the player
 		this.player.draw();
 		// Draw the enemies

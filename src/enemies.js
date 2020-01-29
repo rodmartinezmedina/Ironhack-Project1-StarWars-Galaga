@@ -2,7 +2,7 @@
 
 function Enemy (canvas, y , speed, source) {
 	this.canvas = canvas;
-	this.ctx =canvas.getContext('2d');
+	this.ctx = this.canvas.getContext('2d');
 	this.size = 65;
 	this.x = y;
 	this.y =0;
