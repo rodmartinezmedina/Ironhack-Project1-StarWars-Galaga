@@ -44,6 +44,29 @@ Player.prototype.didCollide = function(enemy) {
 		return false;	
 };
 
+Player.prototype.didCollideYoda = function(yoda) {
+	var playerLeft = this.x;
+	var playerRight = this.x + this.size;
+	var playerTop = this.y;
+	var playerBottom = this.y + this.size;
+		
+	var yodaLeft = yoda.x;
+	var yodaRight = yoda.x + yoda.size;
+	var yodaTop = yoda.y;
+	var yodaBottom = yoda.y + yoda.size;	
+
+	// Check if the yoda intersects any of the player's sides
+	var yodaCrossLeft = yodaLeft <= playerRight && yodaLeft >= playerLeft;
+	var yodaCrossRight = yodaRight >= playerLeft && yodaRight <= playerRight;
+	var yodaCrossBottom = yodaBottom >= playerTop && yodaBottom <= playerBottom;
+	var yodaCrossTop = yodaTop <= playerBottom && yodaTop >= playerTop;
+
+	if ((yodaCrossLeft || yodaCrossRight) && (yodaCrossTop || yodaCrossBottom)) {
+		return true;
+	}
+		return false;	
+};
+
 
 Player.prototype.didCollideBig = function(bigEnemy) {
 	var playerLeft = this.x;
@@ -68,7 +91,6 @@ Player.prototype.didCollideBig = function(bigEnemy) {
 };
 
 
-
 Player.prototype.handleScreenCollision = function() {
 
 	this.x = this.x + this.direction * this.speed;
@@ -82,6 +104,10 @@ Player.prototype.handleScreenCollision = function() {
 
 Player.prototype.removeLife = function() {
 	this.lives -= 1;
+};
+
+Player.prototype.giveLife = function() {
+	this.lives += 1;
 };
 
 

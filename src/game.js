@@ -6,6 +6,7 @@ function Game() {
 	this.bullets = [];
 	this.enemies = [];
 	this.bigEnemies = [];
+	this.yodas = [];
 	this.player = null;
 	this.gameIsOver = false;
 	this.gameScreen = null;
@@ -92,6 +93,11 @@ Game.prototype.createFastEnemy = function (source) {
 	this.enemies.push(newFastEnemy);
 }
 
+Game.prototype.createYoda = function (source) {
+	var randomX = this.canvas.width * Math.random();
+	var newYoda = new Yoda(this.canvas, randomX, 1, source);
+	this.yodas.push(newYoda);
+}
 
 Game.prototype.startLoop = function() {
 		var loop = function() {
@@ -124,18 +130,21 @@ Game.prototype.startLoop = function() {
 
 
 		if (Math.random() > 0.998) {
-			this.createEnemy('images/Y-Wing.png')
+			this.createYoda('images/yoda1.png')
 		} 
 		else if (Math.random() > 0.995) {
 			this.createFastEnemy('images/Slave I.png')
 		}
 		else if (Math.random() > 0.992) {
-		this.createEnemy('images/Tie Fighter - 02.png')
+			this.createFastEnemy('images/Tie Fighter - 02.png')
+		}
+		else if (Math.random() > 0.991) {
+			this.createEnemy('images/Y-Wing.png')
 		}
 		else if (Math.random() > 0.99) {
-		this.createEnemy('images/Tie Bomber.png');
+			this.createEnemy('images/Tie Bomber.png');
 		};	
-
+		
 
 
 		// HELP post MVP
@@ -150,8 +159,8 @@ Game.prototype.startLoop = function() {
 	
 		this.player.handleScreenCollision();
 
-	    // 4. Move existing enemies
-		// 5. Check if any enemy is going off the screen
+	  
+		// 5. Check if any enemy or yoda is going off the screen
 		this.enemies = this.enemies.filter(function(enemy) {
 			enemy.updatePosition();
 			return enemy.isInsideScreen();
@@ -168,6 +177,12 @@ Game.prototype.startLoop = function() {
 			bullet.update();
 			// return bullet;
 			return bullet.isInsideScreen();
+		});
+
+		this.yodas = this.yodas.filter(function(yoda) {
+			yoda.updatePosition();
+			// return yoda;
+			return yoda.isInsideScreen();
 		});
 
 	// 2. CLEAR CANVAS
@@ -188,11 +203,14 @@ Game.prototype.startLoop = function() {
 		this.bigEnemies.forEach(function(bigEnemy) {
 			bigEnemy.draw();
 		});
-
 		//Draw the bullets
 		this.bullets.forEach(function (bullet) {
 			bullet.draw()
-		  });
+		});
+		//Draw the yodas
+		this.yodas.forEach(function(yoda) {
+			yoda.draw();
+		});
 
 
  // 4. TERMINATE LOOP IF GAME IS OVER
@@ -227,6 +245,18 @@ Game.prototype.checkCollisions = function() {
 		}
 	}, this)
 
+	this.yodas.forEach (function (yoda) {
+		if (this.player.didCollideYoda(yoda) ) {
+			this.player.giveLife();
+			console.log('lives', this.player.lives);
+			//Move the yoda offscreen
+			yoda.x = 0 - yoda.size;
+			if (this.player.lives === 0) {
+				this.gameOver();
+			}
+		}
+	}, this)
+
 	this.bigEnemies.forEach (function (bigEnemy) {
 		if (this.player.didCollideBig(bigEnemy) ) {
 			this.player.removeLife();
@@ -239,6 +269,7 @@ Game.prototype.checkCollisions = function() {
 			}
 		}
 	}, this)
+
 	  // We have to pass `this` value as the second argument
   // as array method callbacks have a default `this` of undefined.
 };
@@ -296,10 +327,12 @@ Game.prototype.gameOver = function() {
 	this.onGameOverCallback();
 };
 
+
 Game.prototype.removeGameScreen = function() {
 	this.gameScreen.remove();
 	// remove() is the DOM method which removes the DOM Node 
 };
+
 
 Game.prototype.passGameOverCallback = function(gameOver) {
 	this.onGameOverCallback = gameOver;
