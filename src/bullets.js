@@ -16,7 +16,7 @@ Bullet.prototype.draw = function() {
     // this.ctx.fillRect(this.x, this.y, this.size, this.size);
 
     this.laserShot = new Image();   // Create new <img> element
-	this.laserShot.src = 'images/laserShotGreen.png'; // Set source path
+	this.laserShot.src = '../images/laserShotGreen.png'; // Set source path
     this.ctx.drawImage(this.laserShot, this.x, this.y, this.size, this.size);
     
     // this.image.src = "./images/AT-AT.png";

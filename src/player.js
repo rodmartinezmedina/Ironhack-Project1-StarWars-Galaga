@@ -90,6 +90,6 @@ Player.prototype.draw = function () {
 	// this.ctx.fillStyle = 'red';
 	// this.ctx.fillRect(this.x, this.y, this.size, this.size);
 	this.imgShip1 = new Image();   // Create new <img> element
-	this.imgShip1.src = 'images/Millenium Falcon - 02.png'; // Set source path
+	this.imgShip1.src = '../images/Millenium Falcon - 02.png'; // Set source path
 	this.ctx.drawImage(this.imgShip1, this.x, this.y, this.size, this.size);
 };

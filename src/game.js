@@ -11,7 +11,7 @@ function Game() {
 	this.gameScreen = null;
 	this.score = 0;
 	this.backImg1 = new Image();   // Create new <img> elementgit 
-	this.backImg1.src = './images/background-space4.jpg'; // Set source path
+	this.backImg1.src = '../images/background-space4.jpg'; // Set source path
 	this.printBigEnemy = true;
 	this.counter = 0;
 }
@@ -97,14 +97,14 @@ Game.prototype.startLoop = function() {
 			
 			if (this.counter % 600 === 0) {
 				console.log(this.counter)
-				this.createBigEnemy('/images/Death Star - 1st.png');;
+				this.createBigEnemy('../images/Death Star - 1st.png');;
 			}
 			else if (this.counter % 900 === 0) {
 				console.log(this.counter);
-				this.createBigEnemy('/images/Death Star - 2nd.png');
+				this.createBigEnemy('../images/Death Star - 2nd.png');
 			}
 			else if (this.counter % 1500 === 0 ) {
-				this.createBigEnemy('/images/Trade Federation Battleship.png');
+				this.createBigEnemy('../images/Trade Federation Battleship.png');
 			}
 
 			//Another set time approach for the enemies with fixed times
@@ -119,16 +119,16 @@ Game.prototype.startLoop = function() {
 
 
 		if (Math.random() > 0.998) {
-			this.createEnemy('/images/Y-Wing.png')
+			this.createEnemy('../images/Y-Wing.png')
 		} 
 		else if (Math.random() > 0.995) {
-			this.createFastEnemy('/images/Slave I.png')
+			this.createFastEnemy('../images/Slave I.png')
 		}
 		else if (Math.random() > 0.992) {
-		this.createEnemy('/images/Tie Fighter - 02.png')
+		this.createEnemy('../images/Tie Fighter - 02.png')
 		}
 		else if (Math.random() > 0.99) {
-		this.createEnemy('/images/Tie Bomber.png');
+		this.createEnemy('../images/Tie Bomber.png');
 		};	
 
 
