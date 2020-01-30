@@ -19,13 +19,17 @@ function Game() {
 	this.crashSoundBig = new Audio ('sounds/dont-come-back.mp3');
 	this.crashSound = new Audio ('sounds/boom.mp3');
 	this.bulletSound = new Audio ('sounds/blaster.wav');
-	this.gameOverSound = new Audio ('sounds/dark-side-power.mp3');
-	this.gameOverMusic = new Audio ('sounds/imperial-march.mp3');
-	this.splasScreenMusic = new Audio ('sounds/blaster.wav');
+	// this.gameOverSound = new Audio ('sounds/dark-side-power.mp3');
+	// this.gameOverMusic = new Audio ('sounds/imperial-march.mp3');
+	// this.splasScreenMusic = new Audio ('sounds/main-theme.mp3');
 }
 
 
 Game.prototype.start = function() {
+
+	// this.crashSound.currentTime = 0;
+	// this.crashSound.volume = 0.4;
+	// this.crashSound.play();
 
 	// Save reference to canvas and container. Create ctx
 	this.canvasContainer = document.querySelector('.canvas-container');
@@ -323,14 +327,12 @@ Game.prototype.checkbulletEnemyCollisions = function() {
 	}, this);
 };
 
+
 Game.prototype.updateGamesStats = function() {
 	
 	this.livesElement.innerHTML = this.player.lives;
 	this.scoreElement.innerHTML = this.score;
 };
-
-
-
 
 
 Game.prototype.createBullet = function () {
@@ -340,7 +342,7 @@ Game.prototype.createBullet = function () {
 		this.bullets.push(newBullet);
 
 		this.bulletSound.currentTime = 0;
-		this.bulletSound.volume = 0.1;
+		this.bulletSound.volume = 0.05;
 		this.bulletSound.play();
 
 		//can shoot or not 

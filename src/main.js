@@ -12,13 +12,19 @@ function main() {
   var game; // instance of the Game
   var splashScreen; // Start Screen
   var gameOverScreen;
-  var youWonScreen;
+	var youWonScreen;
+	var splashScreenMusic = new Audio ('sounds/main-theme.mp3');
+	var gameOverSound = new Audio ('sounds/dark-side-power.mp3');
+	var gameOverMusic = new Audio ('sounds/imperial-march.mp3');
 
     
   // -- splash screen
 
   function createSplashScreen() {
 		removeGameOverScreen();
+		gameOverMusic.pause();
+		gameOverSound.pause();
+
 		splashScreen = buildDom(`
 		<main class="splash-screen-container">
 			<h1>use the force</h1>
@@ -34,14 +40,21 @@ function main() {
 		</main>
 	`);
 
-		document.body.appendChild(splashScreen);
+	splashScreenMusic.play();
+	splashScreenMusic.currentTime = 0;
+	splashScreenMusic.volume = 0.4;
 
+	
+
+		document.body.appendChild(splashScreen);
+		
 		var startButton = splashScreen.querySelector('button');
 		// startButton.addEventListener('click', function() {
 		// 	console.log('Game started! War begins!')
 		// });
 		startButton.addEventListener('click', startGame);
 			//Game started
+			
 	};
 
 
@@ -54,6 +67,7 @@ function main() {
 		// -- create game screen
 
   function createGameScreen() {
+		
 		var gameScreen = buildDom(`
 			<main class="game-container">
 				<header>
@@ -73,6 +87,10 @@ function main() {
 		`);
 
 		document.body.appendChild(gameScreen);
+
+		// splashScreenMusic.pause();
+		// splashScreenMusic.currentTime = 0;
+
 		return gameScreen;
 	};
 	
@@ -94,10 +112,15 @@ function main() {
 			</main>			  
 		`)
 		
-		//
-		// if this doesnt work out change after the 'click' back to startGame
-		//
-		//
+		gameOverMusic.play();
+		gameOverMusic.currentTime = 0;
+		gameOverMusic.volume = 0.4;
+		
+		gameOverSound.play();
+		gameOverSound.currentTime = 0;
+		gameOverSound.volume = 0.4;
+
+
 		var button = gameOverScreen.querySelector('button');
 		button.addEventListener('click', createSplashScreen);
 
