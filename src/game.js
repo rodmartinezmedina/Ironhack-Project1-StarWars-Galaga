@@ -118,6 +118,7 @@ Game.prototype.startLoop = function() {
 				this.createBigEnemy('images/Trade Federation Battleship.png');
 			}
 
+
 			//Another set time approach for the enemies with fixed times
 
 				// if (this.printBigEnemy) {
@@ -146,7 +147,10 @@ Game.prototype.startLoop = function() {
 		};	
 		
 		if (this.player.lives <= 3 ) {
-			document.querySelector(".lives").setAttribute("style", "color: rgb(196, 41, 41)")
+			document.querySelector(".lives").setAttribute("style", "color: rgb(196, 41, 41)");
+		}
+		else if(this.player.lives >= 4 ) {
+			document.querySelector(".lives").setAttribute("style", "color: rgb(34, 228, 34)");
 		};
 
 
@@ -161,8 +165,8 @@ Game.prototype.startLoop = function() {
 	
 		//Keeps player inside the frame
 		this.player.handleScreenCollision();
-
 	  
+
 		//Check if any enemy or yoda is going off the screen
 		this.enemies = this.enemies.filter(function(enemy) {
 			enemy.updatePosition();
@@ -231,6 +235,7 @@ Game.prototype.startLoop = function() {
 
 	window.requestAnimationFrame(loop);
 };
+
 
 Game.prototype.checkCollisions = function() {
 	

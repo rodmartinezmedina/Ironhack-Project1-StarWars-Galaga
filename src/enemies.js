@@ -23,7 +23,7 @@ Enemy.prototype.updatePosition = function () {
 Enemy.prototype.isInsideScreen = function () {
 	// if y plus half of its size is smaller than 0 return
 	// whats going on here?????
-	return (this.y + this.size / 2 > 0) && (this.x + this.size / 2 < this.canvas.width);
+	return (this.y + this.size > 0) && (this.x + this.size < this.canvas.width);
 };
 
 
@@ -48,7 +48,7 @@ BigEnemy.prototype.updatePosition = function () {
 };
 
 BigEnemy.prototype.isInsideScreen = function () {
-	return this.y + this.size > 0;
+	return (this.y + this.size > 0) && (this.x + this.size < this.canvas.width);
 };
 
 

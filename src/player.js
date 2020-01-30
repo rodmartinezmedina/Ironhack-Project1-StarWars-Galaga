@@ -93,13 +93,23 @@ Player.prototype.didCollideBig = function(bigEnemy) {
 
 Player.prototype.handleScreenCollision = function() {
 
-	this.x = this.x + this.direction * this.speed;
 	var screenLeft = 0;
 	var screenRight = this.canvas.width - 90;
-	
+	this.x = this.x + this.direction * this.speed;
+
 	if (this.x < screenLeft) this.direction = 0;
 	else if (this.x > screenRight) this.direction = 0;
 };
+
+
+
+// 	this.x = this.x + this.direction * this.speed;
+// 	var screenLeft = 0;
+// 	var screenRight = this.canvas.width - 90;
+	
+// 	if (this.x < screenLeft) this.direction = 0;
+// 	else if (this.x > screenRight) this.direction = 0;
+// };
 
 
 Player.prototype.removeLife = function() {
