@@ -21,9 +21,15 @@ function main() {
   // -- splash screen
 
   function createSplashScreen() {
+
 		removeGameOverScreen();
+
 		gameOverMusic.pause();
 		gameOverSound.pause();
+
+		splashScreenMusic.play();
+		splashScreenMusic.currentTime = 0;
+		splashScreenMusic.volume = 0.4;
 
 		splashScreen = buildDom(`
 		<main class="splash-screen-container">
@@ -39,10 +45,6 @@ function main() {
 
 		</main>
 	`);
-
-	splashScreenMusic.play();
-	splashScreenMusic.currentTime = 0;
-	splashScreenMusic.volume = 0.4;
 
 	
 

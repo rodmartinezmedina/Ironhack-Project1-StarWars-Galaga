@@ -8,6 +8,7 @@ function Game() {
 	this.bigEnemies = [];
 	this.yodas = [];
 	this.player = null;
+	this.shooter = null;
 	this.gameIsOver = false;
 	this.gameScreen = null;
 	this.score = 0;
@@ -30,7 +31,7 @@ Game.prototype.start = function() {
 	// this.crashSound.currentTime = 0;
 	// this.crashSound.volume = 0.4;
 	// this.crashSound.play();
-
+	
 	// Save reference to canvas and container. Create ctx
 	this.canvasContainer = document.querySelector('.canvas-container');
 	this.gameContainer = document.querySelector('.game-container');
@@ -51,7 +52,9 @@ Game.prototype.start = function() {
 
 
 	// Create a new player for the current game
-	this.player = new Player (this.canvas, 6);
+	this.player = new Player (this.canvas, 10);
+
+	this.shooter = new Shooter (this.canvas);
 
 	// Add event listener for moving the player.Event listener callback function
 	this.handleKeyDown = function(event) {
@@ -125,7 +128,7 @@ Game.prototype.startLoop = function() {
 				console.log(this.counter);
 				this.createBigEnemy('images/Death Star - 2nd.png');
 			}
-			else if (this.counter % 1500 === 0 ) {
+			else if (this.counter % 1200 === 0 ) {
 				this.createBigEnemy('images/Trade Federation Battleship.png');
 			}
 
@@ -141,16 +144,16 @@ Game.prototype.startLoop = function() {
 				// 	}.bind(this), 5000);
 
 
-		if (Math.random() > 0.998) {
+		if (Math.random() > 0.999) {
 			this.createYoda('images/yoda1.png')
 		} 
-		else if (Math.random() > 0.995) {
+		else if (Math.random() > 0.998) {
 			this.createFastEnemy('images/Slave I.png')
 		}
-		else if (Math.random() > 0.992) {
+		else if (Math.random() > 0.997) {
 			this.createFastEnemy('images/Tie Fighter - 02.png')
 		}
-		else if (Math.random() > 0.991) {
+		else if (Math.random() > 0.993) {
 			this.createEnemy('images/Y-Wing.png')
 		}
 		else if (Math.random() > 0.99) {
@@ -176,6 +179,7 @@ Game.prototype.startLoop = function() {
 	
 		//Keeps player inside the frame
 		this.player.handleScreenCollision();
+		this.shooter.handleScreenCollision();
 	  
 
 		//Check if any enemy or yoda is going off the screen
@@ -211,6 +215,9 @@ Game.prototype.startLoop = function() {
 		this.ctx.drawImage(this.backImg1, 0, 0, this.canvas.width, this.canvas.height);
 		// Draw the player
 		this.player.draw();
+
+		this.shooter.draw();
+
 		// Draw the enemies
 		this.enemies.forEach(function(enemy) {
 			enemy.draw();
