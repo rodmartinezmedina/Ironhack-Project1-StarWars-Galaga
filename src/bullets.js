@@ -44,6 +44,7 @@ Bullet.prototype.didCollide = function(enemy) {
 	var enemyTop = enemy.y;
 	var enemyBottom = enemy.y + enemy.size;
 
+
 // Check if the enemy intersects any of the player's sides
 var crossRight = enemyLeft <= bulletRight && enemyRight >= bulletLeft;
 var crossLeft = enemyRight >= bulletLeft && enemyLeft <= bulletRight;

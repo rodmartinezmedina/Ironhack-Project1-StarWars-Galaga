@@ -4,6 +4,7 @@ function Game() {
 	this.canvas = null;
 	this.ctx = null;
 	this.bullets = [];
+	this.shooterBullets = [];
 	this.enemies = [];
 	this.bigEnemies = [];
 	this.yodas = [];
@@ -53,8 +54,9 @@ Game.prototype.start = function() {
 
 	// Create a new player for the current game
 	this.player = new Player (this.canvas, 10);
-
+// Create a new shooter for the current game
 	this.shooter = new Shooter (this.canvas);
+
 
 	// Add event listener for moving the player.Event listener callback function
 	this.handleKeyDown = function(event) {
@@ -93,13 +95,11 @@ Game.prototype.createBigEnemy = function (source) {
 	this.bigEnemies.push(newBigEnemy);
 }
 
-
 Game.prototype.createEnemy = function (source) {
 	var randomX = this.canvas.width * Math.random();
 	var newEnemy = new Enemy(this.canvas, randomX, 2, source);
 	this.enemies.push(newEnemy);
 }
-
 
 Game.prototype.createFastEnemy = function (source) {
 	var randomX = this.canvas.width * Math.random();
@@ -117,7 +117,7 @@ Game.prototype.startLoop = function() {
 		var loop = function() {
 
 
-					// 1. Create new Big enemies with set time intervals
+			// 1. Create new Big enemies with set time intervals
 			this.counter++;
 			
 			if (this.counter % 600 === 0) {
@@ -166,7 +166,6 @@ Game.prototype.startLoop = function() {
 		else if(this.player.lives >= 4 ) {
 			document.querySelector(".lives").setAttribute("style", "color: rgb(34, 228, 34)");
 		};
-
 
 
 		//Checks if enemies hit the player

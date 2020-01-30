@@ -13,9 +13,9 @@ function main() {
   var splashScreen; // Start Screen
   var gameOverScreen;
 	var youWonScreen;
-	var splashScreenMusic = new Audio ('sounds/main-theme.mp3');
-	var gameOverSound = new Audio ('sounds/dark-side-power.mp3');
-	var gameOverMusic = new Audio ('sounds/imperial-march.mp3');
+var splashScreenMusic = new Audio ('sounds/main-theme.mp3');
+var gameOverSound = new Audio ('sounds/dark-side-power.mp3');
+var gameOverMusic = new Audio ('sounds/imperial-march.mp3');
 
     
   // -- splash screen
@@ -26,10 +26,6 @@ function main() {
 
 		gameOverMusic.pause();
 		gameOverSound.pause();
-
-		splashScreenMusic.play();
-		splashScreenMusic.currentTime = 0;
-		splashScreenMusic.volume = 0.4;
 
 		splashScreen = buildDom(`
 		<main class="splash-screen-container">
@@ -45,6 +41,10 @@ function main() {
 
 		</main>
 	`);
+
+		splashScreenMusic.play();
+		splashScreenMusic.currentTime = 0;
+		splashScreenMusic.volume = 0.4;
 
 	
 
@@ -114,10 +114,6 @@ function main() {
 		gameOverMusic.play();
 		gameOverMusic.currentTime = 0;
 		gameOverMusic.volume = 0.4;
-		
-		gameOverSound.play();
-		gameOverSound.currentTime = 0;
-		gameOverSound.volume = 0.4;
 
 
 		var button = gameOverScreen.querySelector('button');
@@ -169,6 +165,10 @@ function main() {
     
   // -- initialize Splash screen on initial start
   createSplashScreen();
+
+  splashScreenMusic.play();
+  splashScreenMusic.currentTime = 0;
+  splashScreenMusic.volume = 0.4;
 }
 
 // Runs the function `main` once all resources are loaded
