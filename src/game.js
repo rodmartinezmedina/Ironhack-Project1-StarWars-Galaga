@@ -51,7 +51,7 @@ Game.prototype.start = function() {
 
 
 	// Create a new player for the current game
-	this.player = new Player (this.canvas, 10);
+	this.player = new Player (this.canvas, 6);
 
 	// Add event listener for moving the player.Event listener callback function
 	this.handleKeyDown = function(event) {

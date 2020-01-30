@@ -88,9 +88,6 @@ function main() {
 
 		document.body.appendChild(gameScreen);
 
-		// splashScreenMusic.pause();
-		// splashScreenMusic.currentTime = 0;
-
 		return gameScreen;
 	};
 	
