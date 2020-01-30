@@ -15,6 +15,13 @@ function Game() {
 	this.backImg1.src = 'images/background-space4.jpg'; // Set source path
 	this.printBigEnemy = true;
 	this.counter = 0;
+	this.bonusSound = new Audio ('sounds/use-the-force.mp3')
+	this.crashSoundBig = new Audio ('sounds/dont-come-back.mp3');
+	this.crashSound = new Audio ('sounds/boom.mp3');
+	this.bulletSound = new Audio ('sounds/blaster.wav');
+	this.gameOverSound = new Audio ('sounds/dark-side-power.mp3');
+	this.gameOverMusic = new Audio ('sounds/imperial-march.mp3');
+	this.splasScreenMusic = new Audio ('sounds/blaster.wav');
 }
 
 
@@ -245,11 +252,37 @@ Game.prototype.checkCollisions = function() {
 			console.log('lives', this.player.lives);
 			//Move the enemy offscreen
 			enemy.x = 0 - enemy.size;
-			if (this.player.lives === 0) {
-				this.gameOver();
+
+			if (this.player.lives > 0) {
+				this.crashSound.currentTime = 0;
+				this.crashSound.volume = 0.4;
+				this.crashSound.play();
 			}
+			else if (this.player.lives === 0) {
+				this.gameOver();
+			};
 		}
 	}, this)
+
+
+	this.bigEnemies.forEach (function (bigEnemy) {
+		if (this.player.didCollideBig(bigEnemy) ) {
+			this.player.removeLife();
+			console.log('lives', this.player.lives);
+			//Move the enemy offscreen
+			bigEnemy.x = 0 - bigEnemy.size;
+
+			if (this.player.lives > 0) {
+				this.crashSoundBig.currentTime = 0;
+				this.crashSoundBig.volume = 0.2;
+				this.crashSoundBig.play();
+			}
+			else if (this.player.lives === 0) {
+				this.gameOver();
+			};
+		}
+	}, this)
+
 
 	this.yodas.forEach (function (yoda) {
 		if (this.player.didCollideYoda(yoda) ) {
@@ -257,22 +290,15 @@ Game.prototype.checkCollisions = function() {
 			console.log('lives', this.player.lives);
 			//Move the yoda offscreen
 			yoda.x = 0 - yoda.size;
-			if (this.player.lives === 0) {
-				this.gameOver();
-			}
-		}
-	}, this)
 
-	this.bigEnemies.forEach (function (bigEnemy) {
-		if (this.player.didCollideBig(bigEnemy) ) {
-			this.player.removeLife();
-			console.log('lives', this.player.lives);
-
-			//Move the enemy offscreen
-			bigEnemy.x = 0 - bigEnemy.size;
-			if (this.player.lives === 0) {
-				this.gameOver();
+			if (this.player.lives > 0) {
+				this.bonusSound.currentTime = 0;
+				this.bonusSound.volume = 0.1;
+				this.bonusSound.play();
 			}
+			else if (this.player.lives === 0) {
+				this.gameOver();
+			};
 		}
 	}, this)
 
@@ -312,6 +338,10 @@ Game.prototype.createBullet = function () {
 		var playerPositionX = this.player.x;
 		var newBullet = new Bullet(this.canvas, playerPositionX);
 		this.bullets.push(newBullet);
+
+		this.bulletSound.currentTime = 0;
+		this.bulletSound.volume = 0.1;
+		this.bulletSound.play();
 
 		//can shoot or not 
 		this.player.canShootBullet = false;
