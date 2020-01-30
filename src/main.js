@@ -113,7 +113,11 @@ var gameOverMusic = new Audio ('sounds/imperial-march.mp3');
 		
 		gameOverMusic.play();
 		gameOverMusic.currentTime = 0;
-		gameOverMusic.volume = 0.4;
+		gameOverMusic.volume = 0.3;
+
+		gameOverSound.play();
+		gameOverSound.currentTime = 0;
+		gameOverSound.volume = 0.4;
 
 
 		var button = gameOverScreen.querySelector('button');

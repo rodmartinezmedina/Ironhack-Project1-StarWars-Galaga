@@ -2,7 +2,7 @@ function Bullet(canvas, playerX){
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.size = 40;
-    this.x = playerX;
+    this.x = playerX + 20;
     this.y = canvas.height - 70;    
     this.speed = 8;
     this.direction = 1;  
@@ -12,17 +12,10 @@ function Bullet(canvas, playerX){
 }
 
 Bullet.prototype.draw = function() {    
-    // this.ctx.fillStyle = 'blue';
-    // this.ctx.fillRect(this.x, this.y, this.size, this.size);
-
+  
     this.laserShot = new Image();   // Create new <img> element
 	this.laserShot.src = 'images/laserShotGreen.png'; // Set source path
     this.ctx.drawImage(this.laserShot, this.x, this.y, this.size, this.size);
-    
-    // this.image.src = "./images/AT-AT.png";
-    // this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-    // this.sound.volume = 0.2;
-    // this.sound.play();
 }
 
 Bullet.prototype.update = function() {

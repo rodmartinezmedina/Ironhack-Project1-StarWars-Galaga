@@ -21,6 +21,7 @@ function Game() {
 	this.crashSoundBig = new Audio ('sounds/dont-come-back.mp3');
 	this.crashSound = new Audio ('sounds/boom.mp3');
 	this.bulletSound = new Audio ('sounds/blaster.wav');
+	this.chewieSound = new Audio ('sounds/chewy_roar.mp3');
 	// this.gameOverSound = new Audio ('sounds/dark-side-power.mp3');
 	// this.gameOverMusic = new Audio ('sounds/imperial-march.mp3');
 	// this.splasScreenMusic = new Audio ('sounds/main-theme.mp3');
@@ -113,6 +114,20 @@ Game.prototype.createYoda = function (source) {
 	this.yodas.push(newYoda);
 }
 
+Game.prototype.createShooterBullet = function (source) {
+	var shooterPositionX = this.shooter.x;
+	var newShooterBullet = new ShooterBullet(this.canvas, shooterPositionX, source);
+	this.shooterBullets.push(newShooterBullet);
+
+	this.bulletSound.currentTime = 0;
+	this.bulletSound.volume = 0.03;
+	this.bulletSound.play();
+
+	// console.log("shooterBullet created");
+};
+
+
+
 Game.prototype.startLoop = function() {
 		var loop = function() {
 
@@ -120,28 +135,22 @@ Game.prototype.startLoop = function() {
 			// 1. Create new Big enemies with set time intervals
 			this.counter++;
 			
-			if (this.counter % 600 === 0) {
+			if (this.counter % 200 === 0) {
+				console.log('shooter bullet createeeeeeeeeeeed')
+				this.createShooterBullet('images/laserShotBlue.png');
+			}
+			else if (this.counter % 300 === 0) {
 				console.log(this.counter)
 				this.createBigEnemy('images/Death Star - 1st.png');;
 			}
-			else if (this.counter % 900 === 0) {
+			else if (this.counter % 450 === 0) {
 				console.log(this.counter);
 				this.createBigEnemy('images/Death Star - 2nd.png');
 			}
-			else if (this.counter % 1200 === 0 ) {
+			else if (this.counter % 500 === 0 ) {
+				console.log(this.counter);
 				this.createBigEnemy('images/Trade Federation Battleship.png');
 			}
-
-
-			//Another set time approach for the enemies with fixed times
-
-				// if (this.printBigEnemy) {
-				// 	this.createBigEnemy('/images/Death Star - 1st.png');
-				// 	this.printBigEnemy = false;
-
-				// 	setTimeout(function () {
-				// 		this.printBigEnemy = true;
-				// 	}.bind(this), 5000);
 
 
 		if (Math.random() > 0.999) {
@@ -178,6 +187,7 @@ Game.prototype.startLoop = function() {
 	
 		//Keeps player inside the frame
 		this.player.handleScreenCollision();
+		//Keeps player inside the frame
 		this.shooter.handleScreenCollision();
 	  
 
@@ -198,6 +208,12 @@ Game.prototype.startLoop = function() {
 			return bullet.isInsideScreen();
 		});
 
+		this.shooterBullets = this.shooterBullets.filter(function(shooterBullet) {
+			shooterBullet.update();
+			// return shooterBullet;
+			return shooterBullet.isInsideScreen();
+		});
+
 		this.yodas = this.yodas.filter(function(yoda) {
 			yoda.updatePosition();
 			// return yoda;
@@ -214,9 +230,8 @@ Game.prototype.startLoop = function() {
 		this.ctx.drawImage(this.backImg1, 0, 0, this.canvas.width, this.canvas.height);
 		// Draw the player
 		this.player.draw();
-
+		//Draw the shooter
 		this.shooter.draw();
-
 		// Draw the enemies
 		this.enemies.forEach(function(enemy) {
 			enemy.draw();
@@ -232,6 +247,10 @@ Game.prototype.startLoop = function() {
 		//Draw the yodas
 		this.yodas.forEach(function(yoda) {
 			yoda.draw();
+		});
+		//Draw the shooterBullets
+		this.shooterBullets.forEach(function (shooterBullet) {
+			shooterBullet.draw()
 		});
 
 
@@ -286,6 +305,25 @@ Game.prototype.checkCollisions = function() {
 				this.crashSoundBig.currentTime = 0;
 				this.crashSoundBig.volume = 0.2;
 				this.crashSoundBig.play();
+			}
+			else if (this.player.lives === 0) {
+				this.gameOver();
+			};
+		}
+	}, this)
+
+
+	this.shooterBullets.forEach (function (shooterBullet) {
+		if (this.player.didCollideShooterBullet(shooterBullet) ) {
+			this.player.removeLife();
+			console.log('lives', this.player.lives);
+			//Move the shooterBullet offscreen
+			shooterBullet.x = 0 - shooterBullet.size;
+
+			if (this.player.lives > 0) {
+				this.chewieSound.currentTime = 0;
+				this.chewieSound.volume = 0.1;
+				this.chewieSound.play();
 			}
 			else if (this.player.lives === 0) {
 				this.gameOver();

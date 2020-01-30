@@ -50,5 +50,3 @@ BigEnemy.prototype.updatePosition = function () {
 BigEnemy.prototype.isInsideScreen = function () {
 	return (this.y + this.size > 0) && (this.x + this.size < this.canvas.width);
 };
-
-
