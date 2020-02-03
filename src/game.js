@@ -228,27 +228,26 @@ Game.prototype.startLoop = function() {
 		// 3. UPDATE CANVAS
 		//draw background
 		this.ctx.drawImage(this.backImg1, 0, 0, this.canvas.width, this.canvas.height);
-		// Draw the player
 		this.player.draw();
-		//Draw the shooter
 		this.shooter.draw();
-		// Draw the enemies
+		
 		this.enemies.forEach(function(enemy) {
 			enemy.draw();
 		});
-		//Draw big enemies
+
+		
 		this.bigEnemies.forEach(function(bigEnemy) {
 			bigEnemy.draw();
 		});
-		//Draw the bullets
+		
 		this.bullets.forEach(function (bullet) {
 			bullet.draw()
 		});
-		//Draw the yodas
+		
 		this.yodas.forEach(function(yoda) {
 			yoda.draw();
 		});
-		//Draw the shooterBullets
+	
 		this.shooterBullets.forEach(function (shooterBullet) {
 			shooterBullet.draw()
 		});
