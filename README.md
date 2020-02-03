@@ -114,4 +114,4 @@ Slides
 https://docs.google.com/presentation/d/1xGWgZKqUC9XR6nkk0CJqoxlWB2lPTKI8E2cDoilRvKw/edit?usp=sharing
 
 Deployment link
-https://rodmartinezmedina.github.io/Ironhack-Project1-StarWars-Galaga/
+https://rodmartinezmedina.github.io/Ironhack-Project1-StarWars-Galaga/# Project1-Game-Refactoring-ES6
